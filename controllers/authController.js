@@ -1,6 +1,8 @@
 import { comparePassword, hashPassword } from "../helpers/authhelper.js";
 import userModel from "../models/userModel.js"
 import JWT from "jsonwebtoken"
+import validator from "validator";
+
 
 export const registerController= async(req,res)=>{
       try{
@@ -46,7 +48,7 @@ export const registerController= async(req,res)=>{
        console.log(error);
        res.status(500).send({ // The response body is a JSON object containing details about the error:
         success:false,
-        message: 'Error in Registration',
+        message: 'Please enter correct Email',
         error
        })
       }
@@ -58,7 +60,7 @@ export const loginController= async(req,res)=>{
    try{
    const {email,password} =req.body;
    //validation
-   if(!email ||!password){
+   if(!validator.isEmail(email) ||!password){
     return res.status(404).send({
       success:false,
       message:"Invalid Email or Password"
@@ -68,7 +70,7 @@ export const loginController= async(req,res)=>{
    const user= await userModel.findOne({email});
    if(!user){
     return res.status(200).send({
-      success:true,
+      success:false,
       message:"Email is not registerd"
     })
    }

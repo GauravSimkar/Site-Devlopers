@@ -45,7 +45,7 @@ else{
  }
  catch(error){ 
   console.log(error.response.data)
-  toast.error('Something went wrong');
+  toast.error(error.response.data.message);
  }
   
   };
