@@ -2,7 +2,7 @@ import React from 'react'
 import './Hero.css'
 const Hero = () => {
   return (
-    <div>
+    <div class="hero">
          <nav>
       <div class="nav__content">
         <div class="logo"><a href="#">Mitchell</a></div>
