@@ -1,9 +1,12 @@
-import React from 'react'
 import Layout from '../components/layout/layout'
-import styles from './PrivacyPolicy/module.css'
+//import styles from './PrivacyPolicy/module.css'
 
-export const PrivacyPolicy = () => {
+const PrivacyPolicy = () => {
   return (
+  <Layout>
     <div>PrivacyPolicy</div>
-  )
+  </Layout>
+  );
 }
+
+export default PrivacyPolicy;

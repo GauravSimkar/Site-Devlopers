@@ -1,9 +1,15 @@
-import React from 'react'
 import Layout from '../components/layout/layout'
-import styles from './pagenotfound/module.css'
+//import styles from './pagenotfound/module.css'
 
-export const PageNotFound = () => {
+const PageNotFound = () => {
   return (
-    <div>PageNotFound</div>
+    <> 
+    <center>   
+      <h1>PageNotFound</h1>
+      <h1>404</h1>
+    </center>
+    </>
+
   )
 }
+export default PageNotFound;

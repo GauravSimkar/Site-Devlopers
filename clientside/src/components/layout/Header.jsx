@@ -1,27 +1,29 @@
 import React from 'react'
 import styles from'./header.module.css'
+import {Link} from 'react-router-dom'
 
 function Header () {
   return (
     <>
-   <nav class="navbar navbar-expand-lg navbar-light bg-light" >
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+   <nav className="navbar navbar-expand-lg navbar-light bg-light" >
+  <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+    <span className="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-    <a class="navbar-brand" href="#">E-commerce</a>
-    <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home </a>
+  <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
+    <Link className="navbar-brand" to="#">E-commerce</Link>
+    <ul className="navbar-nav ms-auto mt-2 mt-lg-0">
+      <li className="nav-item active">
+        <Link  className="nav-link" to="/">Home </Link>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Signup</a>
+      <li className="nav-item">
+        <Link  className="nav-link" to="/sign-up">Signup</Link>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Login</a>
+      
+      <li className="nav-item">
+        <Link  className="nav-link" to="login">Login</Link>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Cart(0)</a>
+      <li className="nav-item">
+        <Link  className="nav-link" to="/Cartpage">Cart(0)</Link>
       </li>
 
 

@@ -1,11 +1,10 @@
 import Layout from "../components/layout/layout";
 
-let  CartPages=()=>{
-    return( 
+const Home=()=>{
+    return(
     <Layout>
-    <h1>CartPage</h1>
+       <h1>HomePage</h1>
     </Layout>
     );
 }
-
-export default CartPages;
+export default Home;

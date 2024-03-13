@@ -1,18 +1,12 @@
 
 import './App.css'
-import Layout from './components/layout/layout'
-import About from './pages/About'
-
+import { Outlet } from 'react-router-dom';
 function App() {
-
   return (
     <>
-    <Layout>
-    <About></About>
-    </Layout>
-      
+   <Outlet/>
     </>
-  )
+  );
 }
 
 export default App
