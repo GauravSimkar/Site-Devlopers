@@ -15,7 +15,7 @@ const Error = () => {
             </div>
             <div class="contant_box_404">
               <h3 class="h2">
-                Look like you're lost
+                Look like you are lost
               </h3>
               <p>the page you are looking for not avaible!</p>
               <a href="" class="link_404">Go to Home</a>
@@ -23,6 +23,7 @@ const Error = () => {
           </div>
         </div>
       </div>
+
     </div>
   </section>
 
