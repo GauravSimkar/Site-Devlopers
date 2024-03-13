@@ -57,7 +57,7 @@ import styles from './footer.module.css'
        </div>
     </footer>
     <div className={styles.copyrighttext}>
-      <p>Copyright 2024 Online Tutorials.All Right Reserver</p>
+      <p>Copyright &copy; 2024 Online Tutorials.All Right Reserver</p>
     </div>
    
 

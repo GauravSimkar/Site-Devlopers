@@ -1,13 +1,14 @@
 
 import './App.css'
 import Layout from './components/layout/layout'
+import About from './pages/About'
 
 function App() {
 
   return (
     <>
     <Layout>
-    <h1>Ecommerce </h1>
+    <About></About>
     </Layout>
       
     </>
