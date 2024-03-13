@@ -3,4 +3,34 @@
     margin:0;
     box-sizing: border-box;
   }
+
+  .navbar{
+    background-color: rgba(21, 40, 84, 0.901) !important;
+    padding:10px 10px;
+    box-shadow: 2px 2px 8px rgb(8, 38, 87);;
+  }
+
+  .nav-heading{
+    color:antiquewhite;
+    font-size: 20px;
+  }
+
+  .nav-head-icon{
+    width:30px;
+    font-size: x-large;
+  }
+
+  .nav-heading:hover{
+    color:rgb(218, 171, 110);
+  }
+
+  .page-link{
+    font-size: larger;
+    color:antiquewhite;
+  }
+
+  .page-link:hover{
+    color:rgb(218, 171, 110);
+    border-bottom: 2px solid rgb(160, 160, 140);
+  }
   
