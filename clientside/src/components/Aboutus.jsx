@@ -1,7 +1,9 @@
 import React from 'react'
+import Layout from './layout/layout'
 import './Aboutus.css'
 const Aboutus = () => {
   return (
+    <Layout>
     <div>
 
 <div class="responsive-container-block bigContainer">
@@ -38,8 +40,8 @@ const Aboutus = () => {
     </div>
   </div>
 </div>
-
     </div>
+    </Layout>
   )
 }
 

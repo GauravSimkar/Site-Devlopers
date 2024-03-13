@@ -1,8 +1,9 @@
 import React from 'react'
 import './Contactus.css'
-
+import Layout from './layout/layout'
 const Contactus = () => {
   return (
+    <Layout>
     <div>
 
 <div class="container">
@@ -49,6 +50,7 @@ const Contactus = () => {
   </div>
 
     </div>
+    </Layout>
   )
 }
 

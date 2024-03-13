@@ -7,42 +7,28 @@
   font-family: "Poppins", sans-serif; 
 }
 
-footer{
-  position :relative;
-  background:#383838;
-  height :auto;
-  width :100%;
- 
-
-}
 .container{
-
-  display:grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  grid-gap: 20px;
-  color: #fff;
-}
-h2{
-  padding-bottom:10px;
+  display:flex;
+  flex-direction: column;
+  padding:2%;
+  background-color: rgb(76, 101, 101);
 }
 
-.aboutus ul{
-  list-style:none;
-  display: flex;
-font-size: x-large;
-gap:8px;
-                
-}
-.copyrighttext{
-  color: #fff;
-  background: black;
-  min-height: 40px;
-  padding-left: 35vw;
-  padding-top: 1.5vh;
+.contact{
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap:15px;
 }
 
 a{
+  font-size: larger;
+  margin:0 4px;
+  color:rgb(208, 201, 171);
   text-decoration: none;
-  color:white;
-  font-size:larger ;
 }
+
+a:hover{
+  color:rgb(234, 198, 83);
+}
+

@@ -13,53 +13,22 @@ import styles from './footer.module.css'
     <>
     <footer>
     <div className={styles.container}>
-      <div className={styles.aboutus}>
-        <Link to="/About">About Us</Link>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut dicta amet eligendi vero recusandae enim quis fugit optio quae itaque, saepe reiciendis velit sapiente quos corporis hic cupiditate quam vel?</p>
-        <ul className={styles.linkicons}>
-          <li><a href ='#'><FaFacebookSquare /></a></li>
-          <li><a href ='#'></a><FaInstagramSquare /></li>
-          <li><a href ='#'></a><FaWhatsappSquare /></li>
-          <li><a href ='#'></a><FaSquareTwitter /></li>
-        </ul>
-      </div>
-      <div className={styles.Support}>
-        <h2>Support</h2>
-        <ul>
-          <li><a href='#'>FAQ</a></li>
-          <li><Link to='/privacy-policy'>Privacy Policy</Link></li>
-          <li><a href='#'>Help</a></li>
-          <li><Link to='/Contact'>Contact</Link></li>
-
-        </ul>
-      </div>
-      <div className={styles.shop}>
-        <h2>Shop</h2>
-        <ul>
-          <li><a href='#'>Men</a></li>
-          <li><a href='#'>Women</a></li>
-          <li><a href='#'>Kids</a></li>
-          <li><a href='#'>Shoes</a></li>
-        </ul>
-      </div>
-      <div className={styles.contactus}> 
-      <h2>Contact Us</h2>
-      <ul className={styles.info}>
-        <li>
-          <span><FaPhoneAlt /></span><p><a href='6202966240'>+19 6202966240</a></p>
-        </li>
-        <li>
-          <span><MdEmail /></span><a href ='talhalali384672@gmail.com'>talhaali384672@gmail.com</a>
-        </li>
-      </ul>
-      </div>
-       </div>
+      <center className={styles.contact}>
+        <Link to="/Aboutus">About Us</Link>
+        <Link to='/privacy-policy'>Privacy Policy</Link>
+        <Link to='/Contactus'>Contact</Link>
+      </center >
+        <center className={styles.facebook}>
+          <a href ='#'><FaFacebookSquare /></a>
+          <a href ='#'></a><FaInstagramSquare />
+          <a href ='#'></a><FaWhatsappSquare />
+          <a href ='#'></a><FaSquareTwitter />
+        </center>
+        <center className={styles.copyrighttext}>
+          <p>Copyright &copy; 2024 Online Tutorials.All Right Reserver</p>
+        </center>
+         </div>
     </footer>
-    <div className={styles.copyrighttext}>
-      <p>Copyright &copy; 2024 Online Tutorials.All Right Reserver</p>
-    </div>
-   
-
     </>
     
   )
