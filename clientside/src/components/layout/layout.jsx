@@ -7,7 +7,7 @@ import styles from'./layout.module.css'
   return (
     <>
     <Header/>
-    <main className={styles.layout}>{children}</main>
+  <main className={styles.layout}>{children}</main> 
     <Footer/>
     </>
     

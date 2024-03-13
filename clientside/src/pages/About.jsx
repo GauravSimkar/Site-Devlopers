@@ -4,7 +4,7 @@ import styles from './About.module.css'
 
 function About () {
   return (
-    <>
+    <Layout>
     <div class={styles.container}>
     <div class={styles.content}>
       <div class="left-side">
@@ -47,7 +47,7 @@ function About () {
     </div>
     </div>
   </div>
-    </>
+    </Layout>
   )
 }
 export default About;
