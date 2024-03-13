@@ -1,67 +1,48 @@
-import React, { useState } from 'react'
-import Layout from '../../components/layout/layout'
-import {toast} from 'react-toastify'
-import axios from 'axios';  //for network request
-import './login.css';
+import React from 'react'
+import './Login.css'
 
- function Login() {
-  const [email ,setemail]=useState("");
-  const [password ,setPassword]=useState("");
-
-  const handleemailChange=(event)=>{
-    setemail(event.target.value);
-  };
-  const handlepasswordChange=(event)=>{
-    setPassword(event.target.value);
-  };
-  const handleSubmit= async(event)=>{
-    event.preventDefault();
-    console.log(event);
-   try{   //to handle the response and error
-  const res=await  axios.post(`${import.meta.env.REACT_APP_API}/api/v1/auth/login`,{email,password,});
-  
-  if(res.data.success){
-    toast.success(res.data.message);
-    //tauqeer work for navigation
-  }
-  else{
-    toast.error(res.data.message);
-  }
-  
-   }
-   catch(error){ 
-    console.log(error.response.data)
-    toast.error(error.response.data.message);
-   }
-    
-    };
+const Login = () => {
   return (
-    <>
-    <div class="wrapper">
-    <header>Login Form</header>
-    <form action="#" onSubmit={handleSubmit}>
-      <div class="field email">
-        <div class="input-area">
-          <input type="text" placeholder="Email Address"onChange={handleemailChange} value={email}></input>
-          <i class="icon fas fa-envelope"></i>
-          <i class="error error-icon fas fa-exclamation-circle"></i>
-        </div>
-        <div class="error error-txt">Email can't be blank</div>
-      </div>
-      <div class="field password">
-        <div class="input-area">
-          <input type="password" placeholder="Password"onChange={handlepasswordChange} value={password}></input>
-          <i class="icon fas fa-lock"></i>
-          <i class="error error-icon fas fa-exclamation-circle"></i>
-        </div>
-        <div class="error error-txt">Password can't be blank</div>
-      </div>
-      <div class="pass-txt"><a href="#">Forgot password?</a></div>
-      <input type="submit" value="Login"></input>
-    </form>
-    <div class="sign-txt">Not yet login <a href="#">Signup now</a></div>
-  </div>
-    </>
+    <div>
+        <div class="box-form">
+	<div class="left">
+		<div class="overlay">
+		<h1>Hello World.</h1>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+		Curabitur et est sed felis aliquet sollicitudin</p>
+		
+		</div>
+	</div>
+	
+	
+		<div class="right">
+		<h3>Login</h3><br/>
+		<p>Don't have an account? <a href="#">Creat Your Account</a> it takes less than a minute</p>
+		<div class="inputs">
+			<input type="text" placeholder="user name"/>
+			<br/>
+			<input type="password" placeholder="password"/>
+		</div>
+			
+			<br></br>
+			
+		<div class="remember-me--forget-password">
+				
+	<label>
+		<input type="checkbox" name="item" checked/>
+		<span class="text-checkbox">Remember me</span>
+	</label>
+			<p>forget password?</p>
+		</div>
+			
+			<br/>
+			<button>Login</button>
+	</div>
+	
+</div>
+
+    </div>
   )
 }
-export default Login;
+
+export default Login

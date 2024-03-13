@@ -7,7 +7,7 @@ import { ToastContainer } from 'react-toastify';
  function  Layout  ({children}) {
   return (
     <>
-    <Header/>
+  <Header/>
   <main className={styles.layout}>{children}
   <ToastContainer/>
   </main>   

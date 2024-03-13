@@ -1,39 +1,39 @@
 import React from 'react'
- react-work
-import styles from'./header.module.css'
 import {Link} from 'react-router-dom'
-
+import { TiShoppingCart } from "react-icons/ti";
 function Header () {
   return (
-    <>
-   <nav className="navbar navbar-expand-lg navbar-light bg-light" >
+<nav className="navbar navbar-expand-lg pg-link bg-light nav-head" >
   <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
     <span className="navbar-toggler-icon"></span>
   </button>
   <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-    <Link className="navbar-brand" to="#">E-commerce</Link>
+    <Link className="navbar-brand ecommerce" to="#"><span className='head-icon'><TiShoppingCart/></span> E-commerce App</Link>
     <ul className="navbar-nav ms-auto mt-2 mt-lg-0">
       <li className="nav-item active">
-        <Link  className="nav-link" to="/">Home </Link>
+        <Link   className="nav-link pg-link" to="/">Home</Link>
       </li>
       <li className="nav-item">
-        <Link  className="nav-link" to="/sign-up">Signup</Link>
-      </li>
-      
-      <li className="nav-item">
-        <Link  className="nav-link" to="login">Login</Link>
+        <Link  className="nav-link pg-link" to="/category">Category</Link>
       </li>
       <li className="nav-item">
-        <Link  className="nav-link" to="/Cartpage">Cart(0)</Link>
+        <Link  className="nav-link pg-link" to="/register">Register</Link>
       </li>
-
-
+      <li className="nav-item">
+        <Link  className="nav-link pg-link" to="/login">Login</Link>
+      </li>
+      <li className="nav-item">
+        <Link  className="nav-link pg-link" to="/Cartpage">Cart(0)</Link>
+      </li>
     </ul>
-    
   </div>
 </nav>
-import './header.css'
+);
+}
 
+export default Header;
+/*
+import './header.css'
 function Header () {
   return (
    <>
@@ -46,11 +46,11 @@ function Header () {
         </label>
         <input type="checkbox" name="check" id="check" />
         <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#"></a></li>
-          <li><a href="#"></a></li>
-          <li><a href="#">Login</a></li>
-          <li><a href="#">Cart(0)</a></li>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/Create"></Link></li>
+          <li><Link to="/Register"></Link>Register</li>
+          <li><Link to="/login">Login</Link></li>
+          <li><Link to="">Cart(0)</Link></li>
         </ul>
       </div>
     </nav>
@@ -78,8 +78,9 @@ function Header () {
       </div>
     </section>
     </div>
- main
+
     </>
   )
 }
 export default Header;
+*/
