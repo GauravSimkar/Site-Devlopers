@@ -9,6 +9,8 @@ import CartPages from './pages/CartPages.jsx'
 import PrivacyPolicy from './pages/PrivacyPolicy.jsx'
 import PageNotFound from './pages/PageNotFound.jsx'
 import {RouterProvider,createBrowserRouter} from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify'
 
 const router=createBrowserRouter([
   { path:'/', element:<App/>,
@@ -23,6 +25,9 @@ const router=createBrowserRouter([
 ]);
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+ react-work
      <RouterProvider router={router}/>
+    <App />
+    <ToastContainer/> 
   </React.StrictMode>,
 )

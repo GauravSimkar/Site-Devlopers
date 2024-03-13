@@ -14,6 +14,15 @@ function About () {
           <div className={styles.topic}>Address</div>
           <div className="text-one">Surkhet, NP12</div>
           <div className="text-two">Birendranagar 06</div>
+    <Layout>
+    <div class={styles.container}>
+    <div class={styles.content}>
+      <div class="left-side">
+        <div class={styles.details}>
+          <i class="fas fa-map-marker-alt"></i>
+          <div class={styles.topic}>Address</div>
+          <div class="text-one">Surkhet, NP12</div>
+          <div class="text-two">Birendranagar 06</div>
         </div>
         <div className="phone details">
           <i className="fas fa-phone-alt"></i>
@@ -50,6 +59,8 @@ function About () {
   </div>
 </Layout>
     </>
+    </Layout>
+ main
   )
 }
 export default About;

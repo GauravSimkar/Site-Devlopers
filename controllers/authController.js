@@ -1,30 +1,32 @@
 import { comparePassword, hashPassword } from "../helpers/authhelper.js";
 import userModel from "../models/userModel.js"
 import JWT from "jsonwebtoken"
+import validator from "validator";
+
 
 export const registerController= async(req,res)=>{
       try{
         const {name,email,password,phone,address} =req.body  //get data from client
         //validation (postman me body me jo data hai waha se yaha leaae)
         if(!name){     //think here req.body.name can be used or not
-          return  res.send({error:'Name is Required'});
+          return  res.send({message:'Name is Required'});
         }
         if(!email){   
-          return  res.send({error:'Email is Required'});
+          return  res.send({message:'Email is Required'});
         }if(!password){     
-          return  res.send({error:'password is Required'});
+          return  res.send({message:'password is Required'});
         }
         if(!phone){    
-          return  res.send({error:'phone No.is Required'});
+          return  res.send({message:'phone No.is Required'});
         }
         if(!address){     
-          return  res.send({error:'address is Required'});
+          return  res.send({message:'address is Required'});
         }
 // existing user checking
   const existingUser= await userModel.findOne({email});  //check karega collection me single email hai ki usse jyada
   if(existingUser){
     return res.status(200).send({
-      success:true,
+      success:false,
       message:'Already Register please login',
     })
   }
@@ -46,7 +48,7 @@ export const registerController= async(req,res)=>{
        console.log(error);
        res.status(500).send({ // The response body is a JSON object containing details about the error:
         success:false,
-        message: 'Error in Registration',
+        message: 'Please enter correct Email',
         error
        })
       }
@@ -58,7 +60,7 @@ export const loginController= async(req,res)=>{
    try{
    const {email,password} =req.body;
    //validation
-   if(!email ||!password){
+   if(!validator.isEmail(email) ||!password){
     return res.status(404).send({
       success:false,
       message:"Invalid Email or Password"
@@ -68,7 +70,7 @@ export const loginController= async(req,res)=>{
    const user= await userModel.findOne({email});
    if(!user){
     return res.status(200).send({
-      success:true,
+      success:false,
       message:"Email is not registerd"
     })
    }

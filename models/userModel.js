@@ -20,6 +20,7 @@ const userSchema=new mongoose.Schema(
    password:{
     type:String,
     required:true,
+    min: [6, 'Must be at least 6 '],
    },
    phone:{
     type: String,
