@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
 import Layout from '../../components/layout/layout'
 import  './Register.css'
+import {toast} from 'react-toastify'
+import axios from 'axios';  //for network request
 
 function Register  () {
   const [name ,setName]=useState("");
 
   const [email ,setemail]=useState("");
   const [password ,setPassword]=useState("");
-  const [password1 ,setpassword1]=useState("");
+
   const [phone ,setphone]=useState("");
   const [address,setaddress]=useState("");
   const handlenameChange=(event)=>{
@@ -19,19 +21,35 @@ function Register  () {
   const handlepasswordChange=(event)=>{
     setPassword(event.target.value);
   };
-  const handlepassword1Change=(event)=>{
-    setpassword1(event.target.value);
-  };
+ 
   const handlephoneChange=(event)=>{
     setphone(event.target.value);
   };
   const handleaddressChange=(event)=>{
     setaddress(event.target.value);
   };
-  const handleSubmit=(event)=>{
+  const handleSubmit= async(event)=>{
   event.preventDefault();
-  console.log(name,email,password,password1,address,phone);
-  }
+  console.log(event);
+ try{   //to handle the response and error
+const res=await  axios.post(`${import.meta.env.REACT_APP_API}/api/v1/auth/register`,{name,email,password,phone,address});
+
+if(res.data.success){
+  toast.success(res.data.message);
+  //tauqeer work for navigation
+}
+else{
+  toast.error(res.data.message);
+}
+
+ }
+ catch(error){ 
+  console.log(error.response.data)
+  toast.error('Something went wrong');
+ }
+  
+  };
+  
 
   return (
     <>
@@ -47,9 +65,7 @@ function Register  () {
       <div className="input-box">
         <input type="password"onChange={handlepasswordChange} placeholder="Create password" required value={password}></input>
       </div>
-      <div className="input-box">
-        <input type="password"onChange={handlepassword1Change} placeholder="Confirm password" required value={password1}></input>
-      </div>
+     
       <div className="input-box">
         <input type="text"onChange={handlephoneChange} placeholder="Phone Number" required value={phone}></input>
       </div>

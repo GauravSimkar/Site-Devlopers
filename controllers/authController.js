@@ -7,24 +7,24 @@ export const registerController= async(req,res)=>{
         const {name,email,password,phone,address} =req.body  //get data from client
         //validation (postman me body me jo data hai waha se yaha leaae)
         if(!name){     //think here req.body.name can be used or not
-          return  res.send({error:'Name is Required'});
+          return  res.send({message:'Name is Required'});
         }
         if(!email){   
-          return  res.send({error:'Email is Required'});
+          return  res.send({message:'Email is Required'});
         }if(!password){     
-          return  res.send({error:'password is Required'});
+          return  res.send({message:'password is Required'});
         }
         if(!phone){    
-          return  res.send({error:'phone No.is Required'});
+          return  res.send({message:'phone No.is Required'});
         }
         if(!address){     
-          return  res.send({error:'address is Required'});
+          return  res.send({message:'address is Required'});
         }
 // existing user checking
   const existingUser= await userModel.findOne({email});  //check karega collection me single email hai ki usse jyada
   if(existingUser){
     return res.status(200).send({
-      success:true,
+      success:false,
       message:'Already Register please login',
     })
   }
