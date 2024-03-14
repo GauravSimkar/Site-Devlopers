@@ -3,7 +3,7 @@ import './Error.css'
 
 const Error = () => {
   return (
-    <div>
+    <center>
     
     <section class="page_404">
     <div class="container">
@@ -13,13 +13,13 @@ const Error = () => {
             <div class="four_zero_four_bg">
               <h1 class="text-center ">404</h1>
             </div>
-            <div class="contant_box_404">
+            <center class="contant_box_404">
               <h3 class="h2">
-                Look like you are lost
+               Oops! Look like you are lost
               </h3>
               <p>the page you are looking for not avaible!</p>
               <a href="" class="link_404">Go to Home</a>
-            </div>
+            </center>
           </div>
         </div>
       </div>
@@ -28,7 +28,7 @@ const Error = () => {
   </section>
 
 
-    </div>
+    </center>
   )
 }
 
