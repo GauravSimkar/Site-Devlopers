@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import {toast} from 'react-toastify'
 import axios from 'axios';  //for network request
 import './forgetpassword.css';
+import Layout from '../../components/layout/layout';
 
 
  function Forgetpassword () {
@@ -44,7 +45,7 @@ import './forgetpassword.css';
     
     };
   return (
-    <>
+    <Layout>
     <div class="wrapper">
     <header>Reset Password</header>
     <form action="#" onSubmit={handleSubmit}>
@@ -73,7 +74,7 @@ import './forgetpassword.css';
     </form>
     
   </div>
-    </>
+    </Layout>
     
 
   

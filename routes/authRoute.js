@@ -9,7 +9,7 @@ router.post("/register",registerController);  //by using exprees we make route
 router.post("/login",loginController);
 router.get("/forget-password",forgatPasswordController)
 router.get("/test", requireSignin,isadmin,testControllers);
-router.get('./user-auth',requireSignin,(req,res)=>{
+router.get('/user-auth',requireSignin,(req,res)=>{
   res.status(200).send({ok:true});
 })
 ////admin protected route

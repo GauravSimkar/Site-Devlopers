@@ -4,7 +4,7 @@ import App from './App.jsx'
 import Home from './pages/Home.jsx';
 import Register from './pages/Auth/Register.jsx'
 import Login from './pages/Auth/login.jsx'
-import Forgetpassword from './pages/Auth/forgetpassword.jsx'
+// import Forgetpassword from './pages/Auth/forgetpassword.jsx'
 import Aboutus from './components/Aboutus.jsx'
 import Contactus from './components/Contactus.jsx'
 import CartPages from './pages/CartPages.jsx'
@@ -20,7 +20,7 @@ const router=createBrowserRouter([
     {path:'/' , element:<Home/>,},
     {path:'/register', element:<Register/>},
     {path:'/login',element:<Login/>},
-    {path:'/forget-password',element:<Forgetpassword/>},
+    // {path:'/forget-password',element:<Forgetpassword/>},
     {path:'/Aboutus',element:<Aboutus/>},
     {path:'/Contactus',element:<Contactus/>},
     {path:'/Cartpage',element:<CartPages/>},
