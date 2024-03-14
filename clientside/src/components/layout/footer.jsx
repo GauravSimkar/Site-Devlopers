@@ -11,7 +11,7 @@ import styles from './footer.module.css'
  function Footer () {
   return (
     <>
-    <footer>
+    <footer className="foot">
     <div className={styles.container}>
       <center className={styles.contact}>
         <Link to="/Aboutus">About Us</Link>

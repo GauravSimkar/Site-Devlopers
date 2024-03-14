@@ -1,9 +1,13 @@
+
 import React, { useState } from 'react'
 // import Layout from '../../components/layout/layout'
 import {toast} from 'react-toastify'
 import axios from 'axios';  //for network request
 import './login.css';
 import {Link} from 'react-router-dom'
+
+import './login.css'
+
 
  function Login() {
   const [email ,setemail]=useState("");

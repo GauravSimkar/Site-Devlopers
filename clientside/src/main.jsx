@@ -30,7 +30,7 @@ const router=createBrowserRouter([
 ]);
 
 const bcolor=document.getElementById('root');
-bcolor.style.background='#F3E4CB ';
+bcolor.style.background= '#FAF7F0 '; 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
      <RouterProvider router={router}/>

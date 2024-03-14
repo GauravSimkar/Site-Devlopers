@@ -4,6 +4,7 @@ import colors from 'colors';
 import connectDB from './config/db.js';
 import morgan from 'morgan';
 import authRoutes from './routes/authRoute.js';
+import productRoutes from "./routes/productRoutes.js"
 import cors from 'cors';
 import cateogryRoutes from './routes/cateogryRoute.js'
 
@@ -19,6 +20,7 @@ app.use(express.json());  //jo meera data aa raaha hai usko jsomn object recogni
 app.use(morgan('dev'));
 app.use('/api/v1/auth',authRoutes);
 app.use('/api/v1/cateogry',cateogryRoutes);
+app.use('/api/v1/product',productRoutes)
 
 
 
