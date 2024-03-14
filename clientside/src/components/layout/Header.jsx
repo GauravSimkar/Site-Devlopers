@@ -1,7 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import {Link} from 'react-router-dom'
 import { TiShoppingCart } from "react-icons/ti";
+import { Authcontext } from '../contextAPI/Authcontext';
 function Header () {
+  let [auth,setauth]=useContext(Authcontext);
+  let handlelogout=()=>{
+    setauth({
+      ...auth,user:null,token:""
+    });
+    localStorage.removeItem('auth');
+   // toast.success("Logout Successfully");
+  }
   return (
 <nav className="navbar navbar-expand-lg pg-link bg-light nav-head" >
   <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -16,12 +25,17 @@ function Header () {
       <li className="nav-item">
         <Link  className="nav-link pg-link" to="/category">Category</Link>
       </li>
-      <li className="nav-item">
-        <Link  className="nav-link pg-link" to="/register">Register</Link>
-      </li>
-      <li className="nav-item">
-        <Link  className="nav-link pg-link" to="/login">Login</Link>
-      </li>
+      { !auth.user ?<><li className="nav-item">
+                       <Link  className="nav-link pg-link" to="/register">Register</Link>
+                      </li>
+                      <li className="nav-item">
+                        <Link  className="nav-link pg-link" to="/login">Login</Link>
+                      </li>
+                      </>
+                      :<li className="nav-item">
+                          <Link onClick={handlelogout}  className="nav-link pg-link" to="/login">LogOut</Link>
+                       </li>
+          }
       <li className="nav-item">
         <Link  className="nav-link pg-link" to="/Cartpage">Cart(0)</Link>
       </li>

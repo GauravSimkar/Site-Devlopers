@@ -6,7 +6,7 @@ import validator from "validator";
 
 export const registerController= async(req,res)=>{
       try{
-        const {name,email,password,phone,address} =req.body  //get data from client
+        const {name,email,password,phone,address,answer} =req.body  //get data from client
         //validation (postman me body me jo data hai waha se yaha leaae)
         if(!name){     //think here req.body.name can be used or not
           return  res.send({message:'Name is Required'});
@@ -22,6 +22,10 @@ export const registerController= async(req,res)=>{
         if(!address){     
           return  res.send({message:'address is Required'});
         }
+        if(!answer){     
+          return  res.send({message:'Answer is Required'});
+      }
+
 // existing user checking
   const existingUser= await userModel.findOne({email});  //check karega collection me single email hai ki usse jyada
   if(existingUser){
@@ -33,7 +37,7 @@ export const registerController= async(req,res)=>{
   //register user
    const hashedPassword =await hashPassword(password);
    //save
-   const user = await new userModel({name,email,address,password:hashedPassword,phone}).save();
+   const user = await new userModel({name,email,address,password:hashedPassword,phone,answer}).save();
 
     res.status(201).send({
     success:true,
@@ -90,6 +94,7 @@ export const loginController= async(req,res)=>{
     email:user.email,
     phone:user.phone,
     address:user.address,
+    role:user.role
     },
     token,
    })
@@ -109,4 +114,47 @@ export const loginController= async(req,res)=>{
 //test
 export const testControllers=(req,res)=>{
  res.send("user Protected"); 
+}
+export const forgatPasswordController=async (req,res)=>{
+  try{
+    const {email,newpassword,answer}=req.body;
+    if(!email){
+      res.status(400).send({message:'Email is required'})   //400 code is bad request response status code the server cannot or will not process the request due to something that is perceived to be a client error
+       
+    }
+    if(!answer){
+      res.status(400).send({message:'Answer is required'}) 
+    }
+    if(!newpassword){
+      res.status(400).send({message:'Password is required'}) 
+    }
+    //check email and answer if this is correct then change the new password
+    const user= await userModel.findOne({email,answer});
+    if(!user){
+      res.status(404).send({  //generated when a user attempts to access a webpage that does not exist, has been moved, or has a dead or broken link. 
+        success:false,
+        message:' Wrong Email or Answer ',
+         
+        })
+    }
+    const hashed =await hashPassword(newpassword);
+    await userModel.findByIdAndUpdate(user._id,{password:hashed});
+    res.status(200).send({
+    success:true,
+    message:"Password Reset Sucessfully",
+    });
+    //api made
+
+
+  }
+  catch(error){
+    console.log(error);
+    res.status(500).send({ 
+      success:false,
+      message: 'Server Error',
+      error
+     })
+
+  }
+
 }

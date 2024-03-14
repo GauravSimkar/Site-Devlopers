@@ -11,6 +11,7 @@ function Register  () {
   const [password ,setPassword]=useState("");
 
   const [phone ,setphone]=useState("");
+  const [answer ,setanswer]=useState("");
   const [address,setaddress]=useState("");
   const handlenameChange=(event)=>{
     setName(event.target.value);
@@ -28,11 +29,14 @@ function Register  () {
   const handleaddressChange=(event)=>{
     setaddress(event.target.value);
   };
+  const handleanswerChange=(event)=>{
+    setanswer(event.target.value);
+  };
   const handleSubmit= async(event)=>{
   event.preventDefault();
   console.log(event);
  try{   //to handle the response and error
-const res=await  axios.post(`${import.meta.env.REACT_APP_API}/api/v1/auth/register`,{name,email,password,phone,address});
+const res=await  axios.post(`${import.meta.env.REACT_APP_API}/api/v1/auth/register`,{name,email,password,phone,address,answer});
 
 if(res.data.success){
   toast.success(res.data.message);
@@ -64,6 +68,9 @@ else{
       </div>
       <div className="input-box">
         <input type="password"onChange={handlepasswordChange} placeholder="Create password" required value={password}></input>
+      </div>
+      <div className="input-box">
+        <input type="text"onChange={handleanswerChange} placeholder="What is Your Favourite Actor" required value={answer}></input>
       </div>
      
       <div className="input-box">
