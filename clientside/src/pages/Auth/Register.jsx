@@ -84,7 +84,7 @@ else{
         <h3>I accept all terms & condition</h3>
       </div>
       <div className="input-box button">
-        <input type="Submit" value="Register Now"></input>
+        <Link to='/' value="Register Now"></Link>
       </div>
       <div className="text">
         <h3>Already have an account? <a href="#">Login now</a></h3>

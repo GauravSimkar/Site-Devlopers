@@ -9,4 +9,4 @@ router.put('/update-cateogry/:id',requireSignin,isadmin,updateCateogryController
 router.get('/get-cateogry',cateogryController);
 //single Cateogries
 router.get('/single-cateogry/:slug',singlecateogryController);
-router.get('/delete-cateogry/:id',requireSignin,isadmin, deletecateogryController);
+router.delete('/delete-cateogry/:id',requireSignin,isadmin, deletecateogryController);
