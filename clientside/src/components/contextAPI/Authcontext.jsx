@@ -7,7 +7,7 @@ export const Authcontext=createContext({
 
 const AuthcontextProvider=({children})=>{
    const [auth,setauth]=useState(Authcontext);
-   axios.defaults.headers.common["Authorisation"]=auth?.token;
+   axios.defaults.headers.common["Authorization"]=auth?.token;
    useEffect(()=>{
      const data=JSON.parse(localStorage.getItem('auth'));
      if(data){

@@ -8,7 +8,7 @@ const PrivateRouter=()=>{
    let [auth,setauth]=useContext(Authcontext);
    useEffect(()=>{
      const authcheck=async()=>{
-     const res=await axios.get("/api/v1/auth/user-auth");
+     const res=await axios.get(`${import.meta.env.REACT_APP_API}/api/v1/auth/user-auth`);
      if(res.data.ok){
         setok(true);
      }else{
@@ -17,7 +17,7 @@ const PrivateRouter=()=>{
      };
      if(auth?.token) authcheck();
    },[auth?.token]);
-   return( ok? <Outlet/>:<Spinner/>);
+   return( ok? <Outlet/>:<Spinner path={""}/>);
 }
 
 export default PrivateRouter;
