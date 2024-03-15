@@ -17,7 +17,7 @@ import { Authcontext } from '../../components/contextAPI/Authcontext';
   const [auth,setauth]=useContext(Authcontext);
   const navigate=useNavigate();
   const location=useLocation();
-  const obj=JSON.parse(localStorage.getItem('obj'));
+  
   const handleemailChange=(event)=>{
     setemail(event.target.value);
   };
@@ -39,7 +39,7 @@ import { Authcontext } from '../../components/contextAPI/Authcontext';
 		token:res.data.token
 	  });
 	  localStorage.setItem('auth',JSON.stringify(res.data));
-	  navigate(obj.state || '/');
+	  navigate(location.state || '/');
   }
   else{
     toast.error(res.data.message);

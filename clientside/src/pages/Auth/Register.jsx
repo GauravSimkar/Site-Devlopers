@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState ,useContext} from 'react'
 import Layout from '../../components/layout/layout'
 import  './Register.css'
+import { useNavigate } from 'react-router-dom'
+import { Authcontext } from '../../components/contextAPI/Authcontext'
 import {toast} from 'react-toastify'
 import axios from 'axios';  //for network request
 //import { Link } from 'react-router-dom';
@@ -11,6 +13,9 @@ function Register  () {
   const [email ,setemail]=useState("");
   const [password ,setPassword]=useState("");
 
+  const [auth,setauth]=useContext(Authcontext);
+  const navigate=useNavigate();
+ 
   const [phone ,setphone]=useState("");
   const [answer ,setanswer]=useState("");
   const [address,setaddress]=useState("");
@@ -42,6 +47,13 @@ const res=await  axios.post(`${import.meta.env.REACT_APP_API}/api/v1/auth/regist
 if(res.data.success){
   toast.success(res.data.message);
   //tauqeer work for navigation
+  setauth({
+    ...auth,
+  user:res.data.user,
+  token:res.data.token
+  });
+  localStorage.setItem('auth',JSON.stringify(res.data));
+  navigate('/');
 }
 else{
   toast.error(res.data.message);
@@ -52,7 +64,6 @@ else{
   console.log(error.response.data)
   toast.error(error.response.data.message);
  }
-  
   };
   
 

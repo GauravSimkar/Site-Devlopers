@@ -32,8 +32,6 @@ function Header () {
                         <Link  className="nav-link pg-link" to='/login'>Login</Link>
                       </li>
                       </>
-                      
-
                       :<>
                       <li class="nav-item dropdown">
                       <Link href="#"  class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">

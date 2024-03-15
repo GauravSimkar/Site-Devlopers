@@ -9,7 +9,7 @@ const Spinner=({path="login"})=>{
         let interval=setInterval(()=>{
         let newCount=count;
         setcount(newCount-1);
-        },1000);git 
+        },1000);
         count===0 && navigate(`/${path}`,{
             state:location.pathname
         });
