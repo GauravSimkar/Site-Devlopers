@@ -221,5 +221,29 @@ export const productFiltersController=async(req,res)=>{
         })
     }
       }
-    
+    //product list
+    export const productlistController=async(req,res)=>{
+        
+        try{
+          //logic to productlist  
+          const perPage=6;
+          const page=req.params.page?req.params.page:1
+          const products=await productModel.find(({})).select('-photo').skip((page-1)*perPage).limit(perPage).sort({createdAt:-1});
+          res.status(200).send({
+            success:true,
+            products,
+
+          })
+        }
+     catch(error){
+        Console.log(error)
+        res.status(400).send({
+            sucess:false,
+            error,
+            message:"error in product list"
+
+        })
+     }
+
+    }
     
