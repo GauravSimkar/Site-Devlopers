@@ -72,9 +72,11 @@ form h3{
   font-weight: 500;
   margin-left: 10px;
 }
-.input-box.button input{
+.input-box.button input {
   color: #fff;
   letter-spacing: 1px;
+  text-align: center;
+  border-radius: 5px;
   border: none;
   background: #4070f4;
   cursor: pointer;
@@ -82,6 +84,7 @@ form h3{
 .input-box.button input:hover{
   background: #0e4bf1;
 }
+
 form .text h3{
  color: #333;
  width: 100%;

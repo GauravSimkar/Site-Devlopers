@@ -3,6 +3,7 @@ import Layout from '../../components/layout/layout'
 import  './Register.css'
 import {toast} from 'react-toastify'
 import axios from 'axios';  //for network request
+//import { Link } from 'react-router-dom';
 
 function Register  () {
   const [name ,setName]=useState("");
@@ -84,7 +85,7 @@ else{
         <h3>I accept all terms & condition</h3>
       </div>
       <div className="input-box button">
-        <input type="Submit" value="Register Now"></input>
+        <input type="submit" className='reg-link'  value="Register Now"></input>
       </div>
       <div className="text">
         <h3>Already have an account? <a href="#">Login now</a></h3>

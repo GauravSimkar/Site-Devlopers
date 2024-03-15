@@ -10,7 +10,7 @@ function Header () {
     });
     localStorage.removeItem('auth');
    // toast.success("Logout Successfully");
-  }
+   }
   return (
 <nav className="navbar navbar-expand-lg pg-link bg-light nav-head" >
   <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,12 +29,14 @@ function Header () {
                        <Link  className="nav-link pg-link" to="/register">Register</Link>
                       </li>
                       <li className="nav-item">
-                        <Link  className="nav-link pg-link" to="/login">Login</Link>
+                        <Link  className="nav-link pg-link" to='/login'>Login</Link>
                       </li>
                       </>
+                      
+
                       :<>
                       <li class="nav-item dropdown">
-                      <Link href="#" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                      <Link href="#"  class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                         {auth?.user?.name}
                       </Link>
                       <ul className="dropdown-menu dropdown-menu-dark">
@@ -43,6 +45,7 @@ function Header () {
                       </ul>
                     </li>
                    </>
+
           }
              <li className="nav-item">
                  <Link  className="nav-link pg-link" to="/Cartpage">Cart(0)</Link>

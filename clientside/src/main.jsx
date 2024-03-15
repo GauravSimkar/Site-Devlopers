@@ -4,7 +4,10 @@ import App from './App.jsx'
 import Home from './pages/Home.jsx';
 import Register from './pages/Auth/Register.jsx'
 import Login from './pages/Auth/login.jsx'
+// import Forgetpassword from './pages/Auth/forgetpassword.jsx'
+
 //import Forgetpassword from './pages/Auth/forgetpassword.jsx'
+
 import Aboutus from './components/Aboutus.jsx'
 import Contactus from './components/Contactus.jsx'
 import Dashboard from './pages/user/Dashboard.jsx'; 
@@ -26,11 +29,16 @@ const router=createBrowserRouter([
     {path:"user" , element:<Dashboard/>}
     ]},
     {path:'/dashboard/',element:<AdminPrivateRouter/>,children:[
-    {path:"admin" , element:<Dashboard/>}
+    {path:"admin" , element:<AdminDashboard/>}
+
     ]},
     {path:'/register', element:<Register/>},
     {path:'/login',element:<Login/>},
+
+    // {path:'/forget-password',element:<Forgetpassword/>},
+
    // {path:'/forget-password',element:<Forgetpassword/>},
+
     {path:'/Aboutus',element:<Aboutus/>},
     {path:'/Contactus',element:<Contactus/>},
     {path:'/Cartpage',element:<CartPages/>},

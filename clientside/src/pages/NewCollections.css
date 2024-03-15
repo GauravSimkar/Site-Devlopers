@@ -1,0 +1,43 @@
+
+.new-collections {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    margin: 0 auto 50px; 
+    margin-left: 20px; 
+}
+
+.new-collections h1 {
+    text-align: center;
+    color: #171717;
+    font-size: 40px;
+    font-weight: 600;
+}
+
+.new-collections hr {
+    width: 150px;
+    height: 4px;
+    border-radius: 10px;
+    background: #252525;
+}
+
+.collections {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    gap: 20px;
+}
+
+
+@media screen and (max-width: 768px) {
+    .new-collections {
+        margin-left: 10px; 
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .new-collections {
+        margin-left: 5px; 
+    }
+}

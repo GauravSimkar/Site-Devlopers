@@ -13,8 +13,9 @@ next();
 //for admin
 export const isadmin =async (req,res,next)=>{
   try{
+      
    const user=await userModel.findById(req.user._id);   //database se find ka raha hai
-   if(user.role!=1){
+   if(user.role!==1){
     return res.status(401).send({
       success:false,
       message:"Unaouthorized Access"

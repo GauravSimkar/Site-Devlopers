@@ -9,12 +9,12 @@ const Spinner=({path="login"})=>{
         let interval=setInterval(()=>{
         let newCount=count;
         setcount(newCount-1);
-        },1000);
+        },1000);git 
         count===0 && navigate(`/${path}`,{
             state:location.pathname
         });
         return ()=>clearInterval(interval);
-    },[count,navigate,location]);
+    },[count,navigate,location,path]);
     return(
         <>
            <div class="d-flex flex-column justify-content-center spinner">
