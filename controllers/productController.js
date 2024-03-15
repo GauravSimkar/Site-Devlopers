@@ -175,3 +175,51 @@ export const updateProductcontroller=async(req,res)=>{
         })
     }
 }
+//filter
+export const productFiltersController=async(req,res)=>{
+    try{
+        const {checked, radio}=req.body;
+        let args={};
+        if(checked.length>0){
+            args.category=checked;  //jo cateogry select kie woh arg me oobject ban ke aajaega        
+        }
+      if(radio.length){
+        args.price={$gte:radio[0],$lte:radio[1]};   //we find the price from the the selected cateoogry
+      }
+      const products=await productModel.find(args);
+      res.status(200).send({
+        success:true,
+        products,
+      })
+    
+    }
+    catch(error){
+        Console.log(error)
+        res.status(400).send({ //the server cannot or will not process the request due to something that is perceived to be a client error
+            success:false,
+            error,
+            message:"error in filter the product"
+        })
+    }
+
+}
+    //productcount
+    export const productcountController=async(req,res)=>{
+             try{
+               const total=await productModel.find({}).estimatedDocumentCount();
+               res.status(200).send({
+            success:true,
+            total,
+               })
+             }
+      catch(error){
+        Console.log(error)
+        res.status(400).send({ //the server cannot or will not process the request due to something that is perceived to be a client error
+            success:false,
+            error,
+            message:"error in filter the product"
+        })
+    }
+      }
+    
+    
