@@ -32,13 +32,24 @@ function Header () {
                         <Link  className="nav-link pg-link" to='/login'>Login</Link>
                       </li>
                       </>
-                      :<li className="nav-item">
-                          <Link onClick={handlelogout} to='/' className="nav-link pg-link">LogOut</Link>
-                       </li>
+                      
+
+                      :<>
+                      <li class="nav-item dropdown">
+                      <Link href="#"  class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        {auth?.user?.name}
+                      </Link>
+                      <ul className="dropdown-menu dropdown-menu-dark">
+                        <li><Link className="dropdown-item" to={`/dashboard/${auth?.user?.role===1?"admin":"user"}`}>Dashboard</Link></li>
+                        <li><Link onClick={handlelogout} className="dropdown-item" to="/">LogOut</Link></li>
+                      </ul>
+                    </li>
+                   </>
+
           }
-      <li className="nav-item">
-        <Link  className="nav-link pg-link" to="/Cartpage">Cart(0)</Link>
-      </li>
+             <li className="nav-item">
+                 <Link  className="nav-link pg-link" to="/Cartpage">Cart(0)</Link>
+             </li>
     </ul>
   </div>
 </nav>
@@ -46,6 +57,11 @@ function Header () {
 }
 
 export default Header;
+
+/*<li className="nav-item">
+                          <Link  className="nav-link pg-link" to="/login">LogOut</Link>
+                       </li>*/
+
 /*
 import './header.css'
 function Header () {
