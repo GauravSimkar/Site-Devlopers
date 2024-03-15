@@ -6,13 +6,7 @@ import React, { useContext, useState } from 'react'
 // import Layout from '../../components/layout/layout'
 import {toast} from 'react-toastify'
 import axios from 'axios';  //for network request
-
-
-
-
-import './login.css'
-
-import {Link, useNavigate} from 'react-router-dom'
+import {Link, useNavigate,useLocation} from 'react-router-dom'
 import { Authcontext } from '../../components/contextAPI/Authcontext';
 
 
@@ -22,7 +16,8 @@ import { Authcontext } from '../../components/contextAPI/Authcontext';
   
   const [auth,setauth]=useContext(Authcontext);
   const navigate=useNavigate();
-
+  const location=useLocation();
+  const obj=JSON.parse(localStorage.getItem('obj'));
   const handleemailChange=(event)=>{
     setemail(event.target.value);
   };
@@ -33,7 +28,7 @@ import { Authcontext } from '../../components/contextAPI/Authcontext';
     event.preventDefault();
     console.log(event);
    try{   //to handle the response and error
-   const res=await  axios.post(`${import.meta.env.REACT_APP_API}/api/v1/auth/login`,{email,password,});
+   const res=await  axios.post(`${import.meta.env.REACT_APP_API}/api/v1/auth/login`,{email,password});
   
   if(res.data.success){
     toast.success(res.data.message);
@@ -44,7 +39,7 @@ import { Authcontext } from '../../components/contextAPI/Authcontext';
 		token:res.data.token
 	  });
 	  localStorage.setItem('auth',JSON.stringify(res.data));
-	  navigate('/');
+	  navigate(obj.state || '/');
   }
   else{
     toast.error(res.data.message);
