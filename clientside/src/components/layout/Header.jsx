@@ -38,7 +38,7 @@ function Header () {
                         {auth?.user?.name}
                       </Link>
                       <ul className="dropdown-menu dropdown-menu-dark">
-                        <li><Link className="dropdown-item" to={`/dashboard/${auth?.user?.roll===1?"admin":"user"}`}>Dashboard</Link></li>
+                        <li><Link className="dropdown-item" to={`/dashboard/${auth?.user?.role===1?"admin":"user"}`}>Dashboard</Link></li>
                         <li><Link onClick={handlelogout} className="dropdown-item" to="/">LogOut</Link></li>
                       </ul>
                     </li>
