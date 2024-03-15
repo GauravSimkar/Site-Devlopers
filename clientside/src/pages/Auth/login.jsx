@@ -5,7 +5,7 @@ import React, { useContext, useState } from 'react'
 import {toast} from 'react-toastify'
 import axios from 'axios';  //for network request
 import './login.css';
-import {Link, useNavigate} from 'react-router-dom'
+import {Link, useNavigate,useLocation} from 'react-router-dom'
 import { Authcontext } from '../../components/contextAPI/Authcontext';
 
  function Login() {
@@ -14,7 +14,7 @@ import { Authcontext } from '../../components/contextAPI/Authcontext';
   
   const [auth,setauth]=useContext(Authcontext);
   const navigate=useNavigate();
-
+  const location=useLocation();
   const handleemailChange=(event)=>{
     setemail(event.target.value);
   };
@@ -36,7 +36,7 @@ import { Authcontext } from '../../components/contextAPI/Authcontext';
 		token:res.data.token
 	  });
 	  localStorage.setItem('auth',JSON.stringify(res.data));
-	  navigate('/');
+	  navigate(location.state || '/');
   }
   else{
     toast.error(res.data.message);

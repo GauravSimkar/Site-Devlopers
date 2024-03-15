@@ -7,17 +7,22 @@ import Login from './pages/Auth/login.jsx'
 //import Forgetpassword from './pages/Auth/forgetpassword.jsx'
 import Aboutus from './components/Aboutus.jsx'
 import Contactus from './components/Contactus.jsx'
+import Dashboard from './pages/user/Dashboard.jsx'; 
 import CartPages from './pages/CartPages.jsx'
 import PrivacyPolicy from './pages/PrivacyPolicy.jsx'
 import Error from './components/Error.jsx'
 import {RouterProvider,createBrowserRouter} from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
+import PrivateRouter from './components/Routes/Private.jsx';
 
 const router=createBrowserRouter([
   { path:'/', element:<App/>,
     children:[
     {path:'/' , element:<Home/>,},
+    {path:'/dashboard',element:<PrivateRouter/>,children:[
+    {path:"" , element:<Dashboard/>}
+    ]},
     {path:'/register', element:<Register/>},
     {path:'/login',element:<Login/>},
    // {path:'/forget-password',element:<Forgetpassword/>},

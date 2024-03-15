@@ -4,7 +4,6 @@ import { Authcontext } from "../components/contextAPI/Authcontext";
 
 const Home=()=>{
     let obj=useContext(Authcontext);
-    console.log(obj);
     return(
     <Layout>
        <h1>HomePage</h1>
