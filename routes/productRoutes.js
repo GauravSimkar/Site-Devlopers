@@ -35,7 +35,7 @@ router.post(
 
     router.post('/filter-product',productFiltersController);
     router.get('/product-count',productcountController);
-    router.get('/product-list',productlistController);
+    // router.get('/product-list',productlistController);
     
 
 export default router;
