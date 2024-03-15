@@ -6,6 +6,7 @@
   
   body{
     background-color: rgb(143, 141, 138);
+    overflow-x: hidden;
   }
 
   .nav-head{
@@ -44,3 +45,7 @@
     margin-bottom: 0;
     margin-left: 0;
   }*/
+
+  .home-content{
+    padding:1%;
+  }
