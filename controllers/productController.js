@@ -12,7 +12,7 @@ export const createProductcontroller =async(req,res)=>{
         case !name:
             return res.status(500).send({error:"Name is Required"});
          
-            case !Description:
+            case !description:
                 return res.status(500).send({error:"Description is Required"})
                 case !price:
                     return res.status(500).send({error:"price is Required"})
@@ -28,13 +28,14 @@ export const createProductcontroller =async(req,res)=>{
         
         const products=new productModel({...req.fields,slug:slugify(name)})
        if(photo){
-        products.photo.data=fs.readFilesync(photo.path)
+        products.photo.data=fs.readFileSync(photo.path)
         products.photo.contentType=photo.type
        }
      await products.save()
      res.status(201).send({
         succes:true,
-        message:"product created successfully"
+        message:"product created successfully",
+        products
      })
     } catch (error) {
         console.log(error)
@@ -52,6 +53,7 @@ export const getProductController=async(req,res)=>{
      const products = await productModel.find({}).populate("category").select('-photo').limit(20).sort({ceatedAt:-1})
      res.status(200).send({
         success:true,
+        countTotal:products.length,
         message:'ALIProducts',
         products,
       })
@@ -73,7 +75,7 @@ export const getSingleProductController=async(req,res)=>{
         res.status(200).send({
             success:true,
             message:'ALIProducts',
-            products,
+            product,
           })
        } catch (error) {
         console.log(error)
@@ -91,13 +93,13 @@ export const productPhotoController = async(req,res) => {
     try {
    const  product =await productModel.findById(req.params.pid).select("photo")
    if(product.photo.data){
-    res.set('Content-type',product.photo,contentType);
+    res.set('Content-type',product.photo.contentType);
     return res.status(200).send(product.photo.data);
    }
         res.status(200).send({
             success:true,
             message:'ALIProducts',
-            products,
+            product,
           })
         
     } catch (error) {
@@ -113,7 +115,7 @@ export const productPhotoController = async(req,res) => {
 
 export const deleteProductController =async(req,res)=>{
     try {
-        await productModel.findByIdAndDelete(req.params.pid),select("-photo")
+        await productModel.findByIdAndDelete(req.params._id).select('-photo')
         res.status(200).send({
             success:true,
             message:'product successfully deleted',
@@ -140,7 +142,7 @@ export const updateProductcontroller=async(req,res)=>{
         case !name:
             return res.status(500).send({error:"Name is Required"});
          
-            case !Description:
+            case !description:
                 return res.status(500).send({error:"Description is Required"})
                 case !price:
                     return res.status(500).send({error:"price is Required"})
