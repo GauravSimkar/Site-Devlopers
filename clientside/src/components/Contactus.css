@@ -1,4 +1,4 @@
-/* Google Font CDN Link */
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
 *{
@@ -60,6 +60,7 @@ body{
 .content .left-side .details .topic{
   font-size: 18px;
   font-weight: 500;
+  color: #4b14e4;
 }
 .content .left-side .details .text-one,
 .content .left-side .details .text-two{
@@ -102,7 +103,7 @@ body{
   display: inline-block;
   margin-top: 12px;
 }
-.right-side .button input[type="button"]{
+.right-side .button {
   color: #fff;
   font-size: 18px;
   outline: none;
@@ -113,40 +114,38 @@ body{
   cursor: pointer;
   transition: all 0.3s ease;
 }
-.button input[type="button"]:hover{
+.button:hover{
   background: #5029bc;
 }
 
+
 @media (max-width: 950px) {
-  .container{
+  .container {
     width: 90%;
-    padding: 30px 40px 40px 35px ;
+    padding: 30px 40px 40px 35px;
   }
-  .container .content .right-side{
-   width: 75%;
-   margin-left: 55px;
+  .container .content .right-side {
+    width: 75%;
+    margin-left: 55px;
+  }
 }
-}
+
 @media (max-width: 820px) {
-  .container{
-    margin: 40px 0;
-    height: 100%;
+  .container {
+    width: 90%;
+    padding: 30px;
   }
-  .container .content{
-    flex-direction: column-reverse;
+  .container .content {
+    flex-direction: column;
   }
- .container .content .left-side{
-   width: 100%;
-   flex-direction: row;
-   margin-top: 40px;
-   justify-content: center;
-   flex-wrap: wrap;
- }
- .container .content .left-side::before{
-   display: none;
- }
- .container .content .right-side{
-   width: 100%;
-   margin-left: 0;
- }
+  .container .content .left-side,
+  .container .content .right-side {
+    width: 100%;
+    margin-left: 0;
+  }
+  .container .content .left-side {
+    flex-direction: column;
+    margin-top: 20px;
+    align-items: center;
+  }
 }

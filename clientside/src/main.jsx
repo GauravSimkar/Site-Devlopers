@@ -12,11 +12,13 @@ import Error from './components/Error.jsx'
 import {RouterProvider,createBrowserRouter} from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
+import GoogleMap from './components/GoogleMap.jsx';
 
 const router=createBrowserRouter([
   { path:'/', element:<App/>,
     children:[
     {path:'/' , element:<Home/>,},
+    {path:'/google-map' , element:<GoogleMap/>,},
     {path:'/register', element:<Register/>},
     {path:'/login',element:<Login/>},
     {path:'/Aboutus',element:<Aboutus/>},
