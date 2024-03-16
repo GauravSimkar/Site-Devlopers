@@ -5,9 +5,7 @@ import Home from './pages/Home.jsx';
 import Register from './pages/Auth/Register.jsx'
 import Login from './pages/Auth/login.jsx'
 // import Forgetpassword from './pages/Auth/forgetpassword.jsx'
-
 //import Forgetpassword from './pages/Auth/forgetpassword.jsx'
-
 import Aboutus from './components/Aboutus.jsx'
 import Contactus from './components/Contactus.jsx'
 import Dashboard from './pages/user/Dashboard.jsx'; 
@@ -20,25 +18,34 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 import PrivateRouter from './components/Routes/Private.jsx';
 import AdminPrivateRouter from './components/Routes/AdminPrivate.jsx';
+import AdminProfile from './pages/Admin/AdmineProfile.jsx';
+import CreateProduct from './pages/Admin/CreateProduct.jsx';
+import CreateCategory from './pages/Admin/CreateCategory.jsx';
+import Users from './pages/Admin/Users.jsx';
+import Profile from './pages/user/Profile.jsx';
+import Order from './pages/user/Order.jsx';
+/*import 'antd/dist/reset.css'*/
 
 const router=createBrowserRouter([
   { path:'/', element:<App/>,
     children:[
     {path:'/' , element:<Home/>,},
     {path:'/dashboard/',element:<PrivateRouter/>,children:[
-    {path:"user" , element:<Dashboard/>}
+    {path:"user" , element:<Dashboard/>},
+    {path:"user/profile" , element:<Profile/>},
+    {path:"user/order" , element:<Order/>},
     ]},
     {path:'/dashboard/',element:<AdminPrivateRouter/>,children:[
-    {path:"admin" , element:<AdminDashboard/>}
-
+    {path:"admin/" , element:<AdminDashboard/>},
+    {path:"profile" , element:<AdminProfile/>},
+    {path:"create-product" , element:<CreateProduct/>},
+    {path:"create-category" , element:<CreateCategory/>},
+    {path:"users" , element:<Users/>},
     ]},
     {path:'/register', element:<Register/>},
     {path:'/login',element:<Login/>},
-
     // {path:'/forget-password',element:<Forgetpassword/>},
-
    // {path:'/forget-password',element:<Forgetpassword/>},
-
     {path:'/Aboutus',element:<Aboutus/>},
     {path:'/Contactus',element:<Contactus/>},
     {path:'/Cartpage',element:<CartPages/>},
