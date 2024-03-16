@@ -7,6 +7,8 @@
   body{
     background-color: rgb(143, 141, 138);
     overflow-x: hidden;
+    overflow-y: scroll;
+    width:100vw;
   }
 
   .nav-head{
@@ -56,3 +58,77 @@
   .home-content{
     padding:1%;
   }
+
+  /*******************Admin Dashboard and User Dashboard*************************/
+.sidebar-container{
+  padding:1%;
+  padding-top:4%;
+  display:flex;
+  flex-direction: column;
+  width:240px;
+  min-height:100vh;
+  background-color: rgba(233, 237, 7, 0.401);
+  gap:0;
+}
+
+h5{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 25px;
+  color:rgb(249, 224, 5);
+  background-color: rgba(59, 46, 109, 0.481);
+  padding-left:4px;
+  margin-bottom:0;
+  height:3.5rem;
+  border-top-right-radius: 6px;;
+  border-top-left-radius: 6px;
+  border:1px solid black;
+}
+
+.sidebar-link{
+  border:1px solid black;
+  display:flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.sidebar-link a{
+  display: flex;
+  align-items: center;
+  color:rgb(79, 92, 60);
+  margin-left: 0;
+  width:100%;
+  height:4rem;
+}
+
+.active-link{
+  background-color: rgb(3, 46, 47);
+}
+.active-link a{
+  color:rgb(237, 174, 93);
+}
+.a-icon{
+  width:2rem;
+  height:2rem;
+  margin-left: 4px;
+}
+
+.sidebar-link span{
+  display: flex;
+  flex-wrap: wrap;
+  height:4rem
+}
+
+.profile-main{
+  width:100%;
+  height:100vh;
+  padding:6%;
+  background: linear-gradient(45deg,rgba(244, 232, 4, 0.779),rgb(237, 179, 149));
+}
+
+.profile-main div{
+  width:450px;
+  border:1px solid rgb(196, 139, 139);
+  border-radius: 5px;
+}

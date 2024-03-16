@@ -4,9 +4,10 @@ import App from './App.jsx'
 import Home from './pages/Home.jsx';
 import Register from './pages/Auth/Register.jsx'
 import Login from './pages/Auth/login.jsx'
-// import Forgetpassword from './pages/Auth/forgetpassword.jsx'
+import Forgetpassword from './pages/Auth/forgetpassword.jsx'
 
 // import Forgetpassword from './pages/Auth/forgetpassword.jsx'
+//import Forgetpassword from './pages/Auth/forgetpassword.jsx'
 
 import Aboutus from './components/Aboutus.jsx'
 import Contactus from './components/Contactus.jsx'
@@ -20,24 +21,38 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 import PrivateRouter from './components/Routes/Private.jsx';
 import AdminPrivateRouter from './components/Routes/AdminPrivate.jsx';
+import AdminProfile from './pages/Admin/AdmineProfile.jsx';
+import CreateProduct from './pages/Admin/CreateProduct.jsx';
+import CreateCategory from './pages/Admin/CreateCategory.jsx';
+import Users from './pages/Admin/Users.jsx';
+import Profile from './pages/user/Profile.jsx';
+import Order from './pages/user/Order.jsx';
+ //import 'antd/dist/reset.css'
 
 const router=createBrowserRouter([
   { path:'/', element:<App/>,
     children:[
     {path:'/' , element:<Home/>,},
-    {path:'/dashboard/',element:<PrivateRouter/>,children:[
-    {path:"user" , element:<Dashboard/>}
+    {path:'/dashboard',element:<PrivateRouter/>,children:[
+    {path:"/dashboard/user" , element:<Dashboard/>},
+    {path:"/dashboard/user/profile" , element:<Profile/>},
+    {path:"/dashboard/user/order" , element:<Order/>},
     ]},
-    {path:'/dashboard/',element:<AdminPrivateRouter/>,children:[
-    {path:"admin" , element:<AdminDashboard/>}
-
+    {path:'/dashboard',element:<AdminPrivateRouter/>,children:[
+    {path:"/dashboard/admin" , element:<AdminDashboard/>},
+    {path:"/dashboard/admin/profile" , element:<AdminProfile/>},
+    {path:"/dashboard/admin/create-product" , element:<CreateProduct/>},
+    {path:"/dashboard/admin/create-category" , element:<CreateCategory/>},
+    {path:"/dashboard/admin/users" , element:<Users/>},
     ]},
     {path:'/register', element:<Register/>},
     {path:'/login',element:<Login/>},
-
     // {path:'/forget-password',element:<Forgetpassword/>},
 
   //  {path:'/forget-password',element:<Forgetpassword/>},
+
+
+   {path:'/forget-password',element:<Forgetpassword/>},
 
     {path:'/Aboutus',element:<Aboutus/>},
     {path:'/Contactus',element:<Contactus/>},
@@ -49,6 +64,9 @@ const router=createBrowserRouter([
 
 const bcolor=document.getElementById('root');
 bcolor.style.background= '#FAF7F0 '; 
+bcolor.style.width='100vw';
+bcolor.style['min-height']='100vh';
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
      <RouterProvider router={router}/>

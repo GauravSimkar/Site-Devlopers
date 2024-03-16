@@ -1,10 +1,10 @@
+import Adminmenu from "../../components/layout/Adminmenu";
 import Layout from "../../components/layout/layout";
+import AdminProfile from "./AdmineProfile";
 
 const AdminDashboard=()=>{
     return(
-        <Layout>
-            <h1>Admin Dashboard</h1>
-        </Layout>
-    ); 
+            <AdminProfile/>
+        ); 
 };
 export default AdminDashboard;

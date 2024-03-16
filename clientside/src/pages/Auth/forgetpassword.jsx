@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
-import {toast} from 'react-toastify'
-import axios from 'axios';  //for network request
+// import {toast} from 'react-toastify'
+// import axios from 'axios';  //for network request
 import './forgetpassword.css';
 import Layout from '../../components/layout/layout';
 
@@ -45,8 +45,8 @@ import Layout from '../../components/layout/layout';
     
     };
   return (
-    <Layout>
-    <div class="wrapper">
+    <>
+    {/* <div class="wrapper">
     <header>Reset Password</header>
     <form action="#" onSubmit={handleSubmit}>
       <div class="field email">
@@ -73,10 +73,85 @@ import Layout from '../../components/layout/layout';
      <input type="submit" value="Reset"></input>
     </form>
     
-  </div>
-    </Layout>
-    
+  </div> */}
+ {/* <div class="center">
+         <input type="checkbox" id="show"></input>
+         <label for="show" class="show-btn">View Form</label>
+         <div class="container">
+            <label for="show" class="close-btn fas fa-times" title="close"></label>
+            <div class="text">
+               Login Form
+            </div>
+            <form action="#">
+               <div class="data">
+                  <label>Email or Phone</label>
+                  <input type="text" required></input>
+               </div>
+               <div class="data">
+                  <label>Password</label>
+                  <input type="password" required></input>
+               </div>
+               <div class="forgot-pass">
+                  <a href="#">Forgot Password?</a>
+               </div>
+               <div class="btn">
+                  <div class="inner"></div>
+                  <button type="submit">login</button>
+               </div>
+               <div class="signup-link">
+                  Not a member? <a href="#">Signup now</a>
+               </div>
+            </form>
+         </div>
+      </div> */}
+{/* <center class="container">
+      <div class="wrapper">
+        <div class="title"><span>Reset Password</span></div>
+        <form action="#">
+          <div class="row">
+            <i class="fas fa-user"></i>
+            <input type="text" placeholder="Email"nChange={handleemailChange} value={email} required></input>
+          </div>
+          <div class="row">
+            <i class="fas fa-lock"></i>
+            
+            <input type="password" placeholder=" Your Answer"onChange={handleanswerChange} value={answer} required></input>
+          </div>
+          <div class="row">
+            <i class="fas fa-lock"></i>
+            
+            <input type="password" placeholder=" New Password" onChange={handleresetpasswordChange} value={newpassword} required></input>
+          </div>
+          
+          <div class="row button">
+            <input type="submit" value="Reset"></input>
+          </div>
+         
+        </form>
+      </div>
+    </center> */}
+     <div class="login-box">
+        <h2>Login</h2>
+        <form>
+            <div class="user-box">
+                <input type="text" name="" required=""></input>
+                <label>Username</label>
+            </div>
+            <div class="user-box">
+                <input type="password" name="" required=""></input>
+                                  <label>Password</label>
+            </div>
+            <a href="#">
+                
+                Submit
+            </a>
+        </form>
+    </div>
+     </>
 
+
+
+    
   
   )
 }

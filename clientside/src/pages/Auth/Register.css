@@ -15,12 +15,14 @@ body{
 .wrapper{
   position: relative;
   /* max-width: 430px; */
-  width: 70vw;
+  width: 35vw;
   /* height: 40vh; */
   background: #fff;
   padding: 34px;
   border-radius: 6px;
   box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+  margin-left:32vw;
+  margin-top: 4vh;
 }
 .wrapper h2{
   position: relative;

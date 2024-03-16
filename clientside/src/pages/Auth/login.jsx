@@ -57,13 +57,13 @@ import { ToastContainer } from 'react-toastify';
     };
   return (
     <>
-      <div>
+       <div className="login-container">
         <div class="box-form">
 	<div class="left">
 		<div class="overlay">
 		<h1>Hello World.</h1>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-		Curabitur et est sed felis aliquet sollicitudin</p>
+    <h3>Great to have you back!</h3>
+		<p>Welcome to E-commerece App you can login and signup with your Email and Password</p>
 		
 		</div>
 	</div>
@@ -96,8 +96,7 @@ import { ToastContainer } from 'react-toastify';
 	</div>
 	
 </div>
-
-    </div>
+</div>
     <ToastContainer />
     </>
   )
