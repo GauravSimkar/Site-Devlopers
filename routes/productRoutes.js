@@ -1,7 +1,8 @@
 import express from 'express'
 import{ isadmin, requireSignin} from '../middlewares/authMiddleware.js'
-import { createProductcontroller, deleteProductController, getProductController, getSingleProductController, productFiltersController, productPhotoController, productcountController, productlistController, updateProductcontroller } from '../controllers/productController.js'
+import { braintreepaymentController, braintreetokenController, createProductcontroller, deleteProductController, getProductController, getSingleProductController, productFiltersController, productPhotoController, productcategoryController, productcountController, productlistController, relatedProductController, searchProductController, updateProductcontroller } from '../controllers/productController.js'
 import formidable from 'express-formidable'
+
 
 const router=express.Router()
 
@@ -35,7 +36,16 @@ router.post(
 
     router.post('/filter-product',productFiltersController);
     router.get('/product-count',productcountController);
-     router.get('/product-list/:page',productlistController);
-    
+    router.get('/product-list/:page',productlistController);
+    router.get('/search:keyword',searchProductController);
+   // similar product
+    router.get('/related-product/:pid/:cid',relatedProductController)    //first  product per click karne ke baad uske  id with cateogry id us cateogry ke ke jaisa jo product hoga woh show hoga
+    router.get('/product-category:slug',productcategoryController);
+
+  
+  //token for account verification
+   router.get('/braintree/token',braintreetokenController);
+  //payment routes 
+  router.post('/braintree/payment',requireSignin,braintreepaymentController)
 
 export default router;

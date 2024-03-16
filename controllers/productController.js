@@ -1,6 +1,19 @@
 import productModel from "../models/productModel.js";
 import fs from 'fs'
 import slugify from 'slugify'
+import categoryModel from "../models/categoryModel.js";
+import braintree from "braintree";
+import ordermodel from "../models/ordermodel.js";
+import dotenv from "dotenv";
+dotenv.config();
+
+//payment gateway
+var gateway = new braintree.BraintreeGateway({
+  environment: braintree.Environment.Sandbox,
+  merchantId: process.env.BRAINTREE_MERCHANT_ID,
+  publicKey: process.env.BRAINTREE_PUBLIC_KEY,
+  privateKey: process.env.BRAINTREE_PRIVATE_KEY,
+});
 
 
 export const createProductcontroller =async(req,res)=>{
@@ -179,22 +192,26 @@ export const updateProductcontroller=async(req,res)=>{
 export const productFiltersController=async(req,res)=>{
     try{
         const {checked, radio}=req.body;
-        let args={};
+         let args={};
         if(checked.length>0){
             args.category=checked;  //jo cateogry select kie woh arg me oobject ban ke aajaega        
-        }
+        // }
+        // const{shoes}=req.body;
+        // args.category=shoes;
+
       if(radio.length){
         args.price={$gte:radio[0],$lte:radio[1]};   //we find the price from the the selected cateoogry
       }
-      const products=await productModel.find(args);
+      const products=await productModel.find(args.category);
       res.status(200).send({
         success:true,
         products,
       })
     
     }
+}
     catch(error){
-        Console.log(error)
+        console.log(error)
         res.status(400).send({ //the server cannot or will not process the request due to something that is perceived to be a client error
             success:false,
             error,
@@ -238,7 +255,7 @@ export const productFiltersController=async(req,res)=>{
      catch(error){
         Console.log(error)
         res.status(400).send({
-            sucess:false,
+            success:false,
             error,
             message:"error in product list"
 
@@ -246,4 +263,133 @@ export const productFiltersController=async(req,res)=>{
      }
 
     }
+    //search product controller
+    export const searchProductController=async(req,res)=>{
+        try{
+            //logic
+            const {keyword}=req.params
+            const results=await productModel.find({
+                $or:[
+                    {name:{$regex:keyword,$options:"i"}},/*<field>: This should be replaced with the name of the field in your MongoDB collection that you want to perform the regex query on.
+                    "pattern": This is the regular expression pattern you want to match against the field's value.
+                    <options>: This should be replaced with the options for the regex search. Common options include:
+                    "i": Perform case-insensitive matching.*/
+                    {description:{$regex:keyword,$options:"i"}},
+
+                ],
+            }).select("-photo");
+            res.json(results);
+
+        }
+        catch(error){
+            console.log(error);
+         res.status(400).send({
+             success:false,
+             error,
+             message:"error in searching product API"
+         })
+        }
+    }
+   // search related product
+    export const relatedProductController=async(req,res)=>{
+        try{
+            const {pid,cid}=req.params
+        const products= await productModel.find({
+            category:cid,
+            _id:{$ne:pid},   //woh product simisr me nhi dikhae
+        }).select("-photo").limit(5).populate("category");
+        res.status(200).send({
+            success:true,
+            products,
+        });
+
+        }
+        catch(error){
+            console.log(error);
+            res.status(400).send({
+                success:false,
+                error,
+                message:"error while getting related product"
+            })
+        }
+    }
+    //product when category 
+    export const  productcategoryController=async(req,res)=>{
+        try{
+      const categoryproduct=await categoryModel.findOne({slug:req.params.slug}); 
+      const products=await productModel.find({category}).populate('category');
+      res.status(200).send({
+         success:true,
+         categoryproduct,
+         products
+      })
+        }
+        catch(error){
+            console.log(error);
+            res.status(400).send({
+                success:false,
+                error,
+                message:"error while getting product with this category"
+            })
+
+        }
+    }
+//token from braintree
+//callback function
+export const braintreetokenController=async(req,res)=>{
+    try{
+        gateway.clientToken.generate({},function(err,response){
+            if(err){
+                res.status(500).send(err);
+            }
+            else{
+                res.send(response);
+            }
+        })
+
+    }
+    catch(error){
+      console.log(error);
+    }
+
+}
+//payment gateway api
+export const braintreepaymentController=async(req,res)=>{
+    try {
+ const {cart,nonce}=req.body;   //braintree ka khud ka api hai
+ 
+ let total=0;
+ cart.map((i)=>{  //rupee calculated
+ total+=i.price;
+});
+let newTransaction =gateway.transaction.sale({
+    amount:total,
+    PaymentMethodNonce:nonce,
+    options:{
+        submitForSettlement:true
+    }
+},
+function(error,result){
+    if(result){
+        const order= new ordermodel({
+   products:cart,
+   payment:result,
+   buyer: req.user._id
+}).save()
+res.json({ok:true}) 
+}
+else{
+    res.status(500).send(error)
+}
+}
+)
+ 
+ 
+ 
+
+    } catch (error) {
+        
+    }
+
+}
     

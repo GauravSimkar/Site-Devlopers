@@ -6,7 +6,7 @@ import Register from './pages/Auth/Register.jsx'
 import Login from './pages/Auth/login.jsx'
 // import Forgetpassword from './pages/Auth/forgetpassword.jsx'
 
-//import Forgetpassword from './pages/Auth/forgetpassword.jsx'
+// import Forgetpassword from './pages/Auth/forgetpassword.jsx'
 
 import Aboutus from './components/Aboutus.jsx'
 import Contactus from './components/Contactus.jsx'
@@ -37,7 +37,7 @@ const router=createBrowserRouter([
 
     // {path:'/forget-password',element:<Forgetpassword/>},
 
-   // {path:'/forget-password',element:<Forgetpassword/>},
+  //  {path:'/forget-password',element:<Forgetpassword/>},
 
     {path:'/Aboutus',element:<Aboutus/>},
     {path:'/Contactus',element:<Contactus/>},
