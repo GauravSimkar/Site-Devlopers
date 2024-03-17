@@ -25,4 +25,6 @@ router.put('/profile',requireSignin,updateProfileController);
 
 
 
+//talha->work
+// router.get('/orders',requireSignin,getOrdersController);
 export default router;  

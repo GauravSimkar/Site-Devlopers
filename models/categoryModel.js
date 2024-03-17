@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
-const cateogrySchema=new mongoose.Schema({
+
+
+const categorySchema=new mongoose.Schema({
 name:{
   type:String,
   // required:true,
@@ -10,4 +12,4 @@ slug:{
   lowercase:true
 }
 })
-export default mongoose.model("Cateogry",cateogrySchema);
+export default mongoose.model("category",categorySchema);

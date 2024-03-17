@@ -32,7 +32,7 @@ router.post(
     router.get('/product-photo/:pid',productPhotoController);
 
     // delete product
-    router.delete('/products',deleteProductController);
+    router.delete('/delete-product/:pid',deleteProductController);
 
     router.post('/filter-product',productFiltersController);
     router.get('/product-count',productcountController);

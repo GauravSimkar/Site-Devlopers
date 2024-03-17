@@ -1,0 +1,37 @@
+.sidebar-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 200px;
+    background-color: #fff;
+    transition: width 0.3s ease;
+    overflow-y: auto;
+}
+
+.sidebar-container.show {
+    width: 250px; 
+}
+
+.sidebar-toggle-btn {
+    position: absolute;
+    top: 10px;
+    right: -30px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.sidebar-content {
+    display: flex;
+    flex-direction: column;
+    height: var(--sidebar-height); 
+    padding: 20px;
+}
+
+.sidebar-link {
+    margin-top: 20px;
+}
+
+

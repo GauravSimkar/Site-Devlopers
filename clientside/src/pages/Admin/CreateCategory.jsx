@@ -47,6 +47,8 @@ let CreateCategory=()=>{
   //update category
   let handleupdate=async(e)=>{
     e.preventDefault();
+  let handleupdate=async(event)=>{
+    event.preventDefault();
     try{
         let {data}=await axios.put(`${import.meta.env.REACT_APP_API}/api/v1/category/update-category/${selected._id}`,{name:updatename});
         if(data?.success){
@@ -64,6 +66,7 @@ let CreateCategory=()=>{
       
     }
   }
+}
   //Delete category
   let handledelete=async(id,Name)=>{
     try{
@@ -91,8 +94,8 @@ let CreateCategory=()=>{
     <div className="p-3 w-50">
       <CategoryForm handleonSubmit={handleonSubmit} value={name} setvalue={setname}/>
     </div>
-    <div>
-     <table class="table">
+    <div className="m-3 w-75">
+     <table class="table ">
         <thead>
             <tr>
             <th scope="col">Name</th>
@@ -118,8 +121,13 @@ let CreateCategory=()=>{
             </tbody>
         </table>
         </div>
-        <Modal onHide={()=>setvisible(false)}  v={true}>
+       <Modal onHide={()=>setvisible(false)}  visible={true}>
+        <Modal.Header closeButton>
+            <h3>Update category</h3>
+        </Modal.Header>
+        <Modal.Body>
             <CategoryForm value={updatename} setvalue={setupdatename} handleonSubmit={handleupdate}/>
+            </Modal.Body>
         </Modal>
         </div>
         </div>

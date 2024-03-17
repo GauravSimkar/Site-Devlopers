@@ -1,5 +1,3 @@
-
-
 const CategoryForm=({handleonSubmit,value,setvalue})=>{
     return(
     <form onSubmit={
