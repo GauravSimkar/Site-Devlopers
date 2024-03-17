@@ -43,8 +43,8 @@ export const createProductcontroller =async(req,res)=>{
        if(photo){
         products.photo.data=fs.readFileSync(photo.path)
         products.photo.contentType=photo.type
-       }
-     await products.save()
+       } 
+       await products.save()
      res.status(201).send({
         succes:true,
         message:"product created successfully",
@@ -63,7 +63,7 @@ export const createProductcontroller =async(req,res)=>{
 // getting products
 export const getProductController=async(req,res)=>{
   try {
-     const products = await productModel.find({}).populate("category").select('-photo').limit(20).sort({ceatedAt:-1})
+     const products = await productModel.find({}).populate("category").select('-photo').limit(12).sort({ceatedAt:-1})
      res.status(200).send({
         success:true,
         countTotal:products.length,
@@ -109,11 +109,7 @@ export const productPhotoController = async(req,res) => {
     res.set('Content-type',product.photo.contentType);
     return res.status(200).send(product.photo.data);
    }
-        res.status(200).send({
-            success:true,
-            message:'ALIProducts',
-            product,
-          })
+      
         
     } catch (error) {
         console.log(error)
@@ -128,7 +124,7 @@ export const productPhotoController = async(req,res) => {
 
 export const deleteProductController =async(req,res)=>{
     try {
-        await productModel.findByIdAndDelete(req.params._id).select('-photo')
+        await productModel.findByIdAndDelete(req.params.pid).select('-photo')
         res.status(200).send({
             success:true,
             message:'product successfully deleted',
@@ -139,7 +135,7 @@ export const deleteProductController =async(req,res)=>{
         res.status(500).send({
             success:false,
             message:'Error in deleting product',
-            error:error
+            error,
         }); 
     }
 }
@@ -177,7 +173,8 @@ export const updateProductcontroller=async(req,res)=>{
      await products.save()
      res.status(201).send({
         succes:true,
-        message:"product updated successfully"
+        message:"product updated successfully",
+        products,  
      })
     } catch (error) {
         console.log(error)
@@ -202,7 +199,7 @@ export const productFiltersController=async(req,res)=>{
       if(radio.length){
         args.price={$gte:radio[0],$lte:radio[1]};   //we find the price from the the selected cateoogry
       }
-      const products=await productModel.find(args.category);
+      const products=await productModel.find(args.category);//postman run
       res.status(200).send({
         success:true,
         products,
@@ -230,7 +227,7 @@ export const productFiltersController=async(req,res)=>{
                })
              }
       catch(error){
-        Console.log(error)
+        console.log(error)
         res.status(400).send({ //the server cannot or will not process the request due to something that is perceived to be a client error
             success:false,
             error,
@@ -366,7 +363,7 @@ let newTransaction =gateway.transaction.sale({
     amount:total,
     PaymentMethodNonce:nonce,
     options:{
-        submitForSettlement:true
+        submitForSettlement:true,
     }
 },
 function(error,result){
@@ -383,13 +380,27 @@ else{
 }
 }
 )
- 
- 
- 
-
-    } catch (error) {
-        
+  } catch (error) {
+    console.log(error); 
     }
 
 }
-    
+    //order status
+    export  const orderStatusController =async (req,res)=>{
+        try{
+            const {orderId} =req.params; 
+            const { status } =req.body
+            const orders=await ordermodel.findByIdAndUpdate(orderId,{status},{new:true});
+            res.json(orders);
+
+     
+        }
+        catch(error){
+            res.status(500).send({
+           success:false,
+           message:"Error while updating the order"
+            });
+
+        }
+    }
+

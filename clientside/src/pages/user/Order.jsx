@@ -1,7 +1,12 @@
+import Layout from "../../components/layout/layout";
+
+
+
 const Order=()=>{
     return(
         <Layout>
-        <div className="row">
+          
+          <div className="row">
           <div className="col-md-3">
              <Usermenu/>
           </div>
@@ -9,6 +14,7 @@ const Order=()=>{
             Your Orders
           </div>
         </div>
+        
     </Layout>
     );
 }

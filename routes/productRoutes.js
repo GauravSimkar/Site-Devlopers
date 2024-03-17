@@ -1,6 +1,6 @@
 import express from 'express'
 import{ isadmin, requireSignin} from '../middlewares/authMiddleware.js'
-import { braintreepaymentController, braintreetokenController, createProductcontroller, deleteProductController, getProductController, getSingleProductController, productFiltersController, productPhotoController, productcategoryController, productcountController, productlistController, relatedProductController, searchProductController, updateProductcontroller } from '../controllers/productController.js'
+import { braintreepaymentController, braintreetokenController, createProductcontroller, deleteProductController, getProductController, getSingleProductController, orderStatusController, productFiltersController, productPhotoController, productcategoryController, productcountController, productlistController, relatedProductController, searchProductController, updateProductcontroller } from '../controllers/productController.js'
 import formidable from 'express-formidable'
 
 
@@ -32,20 +32,23 @@ router.post(
     router.get('/product-photo/:pid',productPhotoController);
 
     // delete product
-    router.delete('/products',deleteProductController);
+    router.delete('/delete-product/:pid',deleteProductController);
 
     router.post('/filter-product',productFiltersController);
     router.get('/product-count',productcountController);
     router.get('/product-list/:page',productlistController);
-    router.get('/search:keyword',searchProductController);
+    router.get('/search/:keyword',searchProductController);
    // similar product
     router.get('/related-product/:pid/:cid',relatedProductController)    //first  product per click karne ke baad uske  id with cateogry id us cateogry ke ke jaisa jo product hoga woh show hoga
-    router.get('/product-category:slug',productcategoryController);
+    router.get('/product-category/:slug',productcategoryController);
 
   
   //token for account verification
    router.get('/braintree/token',braintreetokenController);
   //payment routes 
   router.post('/braintree/payment',requireSignin,braintreepaymentController)
+
+router.put('/order-status/:orderId',requireSignin,isadmin,orderStatusController);
+
 
 export default router;

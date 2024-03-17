@@ -1,4 +1,5 @@
 import { comparePassword, hashPassword } from "../helpers/authhelper.js";
+import ordermodel from "../models/ordermodel.js";
 import userModel from "../models/userModel.js"
 import JWT from "jsonwebtoken"
 import validator from "validator";
@@ -200,7 +201,45 @@ res.status(200).send({
     error
    })
  }
-
-
-
+}
+//order done by user
+export const getOrdersControllers=async(req,res)=>{
+  try{
+    //logic
+    const orders=await ordermodel.find({buyer:req.user._id}).populate("products","-photo").populate("buyer","name")
+    res.json(orders);
+       res.status(200).send({
+        success:true,
+        message: 'Order placed',
+        orders
+       })
+    
+  }catch(error){
+    console.log(error)
+    res.status(500).send({ 
+      success:false,
+      message: 'Error while getting orders',
+      error
+     })
+  }
+}
+export const getAllOrdersControllers=async(req,res)=>{
+  try{
+    //logic
+    const orders=await ordermodel.find({}).populate("products","-photo").populate("buyer","name").sort({createdAt:"-1"});
+    res.json(orders);
+       res.status(200).send({
+        success:true,
+        message: 'Order placed',
+        orders
+       })
+    
+  }catch(error){
+    console.log(error)
+    res.status(500).send({ 
+      success:false,
+      message: 'Error while getting orders',
+      error
+     })
+  }
 }

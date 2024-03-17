@@ -2,8 +2,10 @@ import React, { useContext } from 'react'
 import {Link} from 'react-router-dom'
 import { TiShoppingCart } from "react-icons/ti";
 import { Authcontext } from '../contextAPI/Authcontext';
+import useCategory from '../../hooks/useCategory';
 function Header () {
   let [auth,setauth]=useContext(Authcontext);
+  const categories=useCategory()
   let handlelogout=()=>{
     setauth({
       ...auth,user:null,token:""
@@ -22,9 +24,24 @@ function Header () {
       <li className="nav-item active">
         <Link   className="nav-link pg-link" to="/">Home</Link>
       </li>
-      <li className="nav-item">
-        <Link  className="nav-link pg-link" to="/category">Category</Link>
-      </li>
+      <li className="nav-item dropdown ">
+  <Link className="nav-link dropdown-toggle bg-grey pg-link rounded " to={"/categories"}   data-bs-toggle="dropdown" >
+    Category
+  </Link>
+  <ul className="dropdown-menu dropdown-menu-dark">
+    <li>
+    <Link className="dropdown-item " to={"/categories"}  >All Categories</Link>
+    </li>
+  {categories?.map((c)=>(
+    <li key={c._id}>
+      <Link className="dropdown-item " to={`/category/${c.slug}`}  >{c.name}</Link>
+      
+    </li>
+  ))}  
+   </ul>
+    
+  
+</li>
       { !auth.user ?<><li className="nav-item">
                        <Link  className="nav-link pg-link" to="/register">Register</Link>
                       </li>
@@ -62,6 +79,7 @@ export default Header;
 
 /*
 import './header.css'
+import useCategory from './../../hooks/useCategory';
 function Header () {
   return (
    <>

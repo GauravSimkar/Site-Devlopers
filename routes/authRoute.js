@@ -1,5 +1,5 @@
 import express from 'express';
-import { registerController,loginController, testControllers, forgatPasswordController, updateProfileController } from "../controllers/authController.js";
+import { registerController,loginController, testControllers, forgatPasswordController, updateProfileController, getOrdersControllers, getAllOrdersControllers } from "../controllers/authController.js";
 import { isadmin, requireSignin } from './../middlewares/authMiddleware.js';
 
 
@@ -17,9 +17,14 @@ router.get('/user-auth',requireSignin,(req,res)=>{
 ////admin protected route
 router.get('/admin-auth',requireSignin,isadmin,(req,res)=>{
   res.status(200).send({ok:true});
-})
+});
 //user profile update
 router.put('/profile',requireSignin,updateProfileController);
+
+router.get('/user-order',requireSignin,getOrdersControllers);
+// order recieve by admin
+router.get('/all-order',requireSignin,isadmin,getAllOrdersControllers);
+
 
 
 

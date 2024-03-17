@@ -28,6 +28,9 @@ import Users from './pages/Admin/Users.jsx';
 import Profile from './pages/user/Profile.jsx';
 import Order from './pages/user/Order.jsx';
  //import 'antd/dist/reset.css'
+ import Categories from './pages/Categories.jsx'
+import CategoryProduct from './pages/CategoryProduct.jsx';
+
 
 const router=createBrowserRouter([
   { path:'/', element:<App/>,
@@ -36,6 +39,7 @@ const router=createBrowserRouter([
     {path:'/dashboard',element:<PrivateRouter/>,children:[
     {path:"/dashboard/user" , element:<Dashboard/>},
     {path:"/dashboard/user/profile" , element:<Profile/>},
+   
     {path:"/dashboard/user/order" , element:<Order/>},
     ]},
     {path:'/dashboard',element:<AdminPrivateRouter/>,children:[
@@ -45,11 +49,13 @@ const router=createBrowserRouter([
     {path:"/dashboard/admin/create-category" , element:<CreateCategory/>},
     {path:"/dashboard/admin/users" , element:<Users/>},
     ]},
+    {path:"/Categories" , element:<Categories/>},
+    {path:"/Category/:slug" , element:<CategoryProduct/>},
     {path:'/register', element:<Register/>},
     {path:'/login',element:<Login/>},
     // {path:'/forget-password',element:<Forgetpassword/>},
 
-  //  {path:'/forget-password',element:<Forgetpassword/>},
+   {path:'/forget-password',element:<Forgetpassword/>},
 
 
    {path:'/forget-password',element:<Forgetpassword/>},
