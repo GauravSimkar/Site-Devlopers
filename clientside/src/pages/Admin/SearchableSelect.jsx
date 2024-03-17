@@ -25,7 +25,7 @@ const SearchableSelect = ({ options ,setcategory,category}) => {
       />
       <select value={selectedOption} onChange={handleSelectChange}>
         {filteredOptions.map((option) => (
-          <option selected key={option._id} value={option._id} onChange={(e)=>{console.log(e);setcategory(e.target.value)}}>
+          <option selected key={option._id} value={option._id} onChange={()=>{setcategory(value)}}>
             {option.name}
           </option>
         ))}

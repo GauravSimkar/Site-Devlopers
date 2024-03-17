@@ -18,7 +18,7 @@ const productSchema = new mongoose.Schema({
     },
     category:{
         type:mongoose.ObjectId,
-        ref:'Cateogry', //necessary when we select a category the product should be shown
+        ref:'category', //necessary when we select a category the product should be shown
         required:true,
     },
     quantity:{

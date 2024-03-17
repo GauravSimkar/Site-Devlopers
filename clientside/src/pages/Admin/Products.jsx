@@ -2,15 +2,17 @@ import Layout from "../../components/layout/layout";
 import Adminmenu from "../../components/layout/Adminmenu";
 import axios from "axios";
 import { useState,useEffect } from "react";
+import { toast } from "react-toastify";
+import { useParams ,Link} from "react-router-dom";
 const Products=()=>{
     const [products,setProducts]=useState([]);
 const getAllProducts=async ()=>{
         try{
-        const {data}=await axios.get(`${import.meta.env.REACT_APP_API}/api/v1/product/get-product`);
+        const {data}=await axios.get(`${import.meta.env.REACT_APP_API}/api/v1/product/getmyproduct`);
         setProducts(data.products);
         } catch (error){
             console.log(error);
-            toast.error("Something went wronng");
+            toast.error("Something went ");
         }
     };
 

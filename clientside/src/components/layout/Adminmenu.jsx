@@ -26,7 +26,7 @@ return(
             <Link to="/dashboard/admin/create-product"  onClick={()=>seta(3)}><BsCartPlus  className="a-icon"/>Create Product</Link>
             </span>
             <span className={a===4 ? 'active-link':''}>
-            <Link to="/dashboard/admin/products"  onClick={()=>seta(4)}><MdOutlineSystemUpdateAlt  className="a-icon"/>Update Product</Link>
+            <Link to="/dashboard/admin/update-product/:slug"  onClick={()=>seta(4)}><MdOutlineSystemUpdateAlt  className="a-icon"/>Update Product</Link>
             </span>
             <span className={a===5 ? 'active-link':''}>
             <Link to="/dashboard/admin/products"  onClick={()=>seta(5)}><FaShoppingBag  className="a-icon"/>Products</Link>

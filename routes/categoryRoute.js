@@ -4,9 +4,9 @@ import { categoryController, createcategoryController, deletecategoryController,
 
 const router=express.Router();
 //create route
-router.post('/create-category',requireSignin,isadmin,createCategoryController);
+router.post('/create-category',requireSignin,isadmin,createcategoryController);
 export default router;
-router.put('/update-category/:id',requireSignin,isadmin,updateCategoryController);
+router.put('/update-category/:id',requireSignin,isadmin,updatecategoryController);
 router.get('/get-category',categoryController);
 //single Cateogries
 router.get('/single-category/:slug',singlecategoryController);

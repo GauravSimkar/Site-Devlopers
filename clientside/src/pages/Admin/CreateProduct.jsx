@@ -70,18 +70,9 @@ let CreateProduct=()=>{
           </div>
           <div className="col-md-9">
             Create Product
-          <div className="m-1 w-75">
-            <select placeholder="Enter category " className=" mb-3"
-              /*onChange={(value)=>{setcategory(value)}}*/>
-                 {
-                  categories.map((c)=>{
-                    <option key={c._id} value={c.name}>{c.name}</option>
-                  })
-                 }
-              </select>
              <div className="m-1 w-75">
-               {  
-            <SearchableSelect options={categories} setcategory={setcategory}/>   }
+               
+            <SearchableSelect options={categories} setcategory={setcategory}/>   
              <div className="mb-3">
                 <label className="btn btn-secondary ">
                   {photo?photo.name : "Upload Photo"} 
@@ -178,7 +169,7 @@ let CreateProduct=()=>{
             </div>
           </div>
         </div>
-        </div>
+        
     </Layout>
 
 
