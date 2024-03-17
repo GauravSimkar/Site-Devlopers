@@ -1,27 +1,82 @@
-import React from 'react'
-import './login.css'
 
-const Login = () => {
+
+//import React from 'react'
+import './login.css'
+import React, { useContext, useState } from 'react'
+// import Layout from '../../components/layout/layout'
+import {toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';  //for network request
+import {Link, useNavigate,useLocation} from 'react-router-dom'
+import { Authcontext } from '../../components/contextAPI/Authcontext';
+import { ToastContainer } from 'react-toastify';
+
+
+ function Login() {
+  const [email ,setemail]=useState("");
+  const [password ,setPassword]=useState("");
+  
+  const [auth,setauth]=useContext(Authcontext);
+  const navigate=useNavigate();
+  const location=useLocation();
+  
+  const handleemailChange=(event)=>{
+    setemail(event.target.value);
+  };
+  const handlepasswordChange=(event)=>{
+    setPassword(event.target.value);
+  };
+  const handleSubmit= async(event)=>{
+    event.preventDefault();
+    console.log(event);
+   try{   //to handle the response and error
+   const res=await  axios.post(`${import.meta.env.REACT_APP_API}/api/v1/auth/login`,{email,password});
+  
+
+  if(res.data.success){
+    toast.success(res.data.message);
+    //tauqeer work for navigation
+	setauth({
+      ...auth,
+		user:res.data.user,
+		token:res.data.token
+	  });
+	  localStorage.setItem('auth',JSON.stringify(res.data));
+	  navigate(location.state || '/');
+  }
+  else{
+    toast.error(res.data.message);
+  }
+  
+   }
+   catch(error){ 
+    console.log(error.response.data)
+    toast.error(error.response.data.message);
+   }
+    
+    };
   return (
-    <div>
+    <>
+       <div className="login-container">
         <div class="box-form">
 	<div class="left">
 		<div class="overlay">
 		<h1>Hello World.</h1>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-		Curabitur et est sed felis aliquet sollicitudin</p>
+    <h3>Great to have you back!</h3>
+		<p>Welcome to E-commerece App you can login and signup with your Email and Password</p>
 		
 		</div>
 	</div>
 	
 	
 		<div class="right">
-		<h3>Login</h3><br/>
+		<h3>Login Form</h3><br/>
+    <form action="#" onSubmit={handleSubmit}>
 		<p>Don't have an account? <a href="#">Creat Your Account</a> it takes less than a minute</p>
 		<div class="inputs">
-			<input type="text" placeholder="user name"/>
+			<input type="text" placeholder="Email"onChange={handleemailChange} value={email}/>
 			<br/>
-			<input type="password" placeholder="password"/>
+			<input type="password" placeholder="password" onChange={handlepasswordChange} value={password}/>
 		</div>
 			
 			<br></br>
@@ -32,17 +87,18 @@ const Login = () => {
 		<input type="checkbox" name="item" checked/>
 		<span class="text-checkbox">Remember me</span>
 	</label>
-			<p>forget password?</p>
+			<Link to='/forget-password'>forget password?</Link>
 		</div>
 			
 			<br/>
-			<button>Login</button>
+			<button >Login</button>
+      </form>
 	</div>
 	
 </div>
-
-    </div>
+</div>
+    <ToastContainer />
+    </>
   )
 }
-
-export default Login
+export default Login;

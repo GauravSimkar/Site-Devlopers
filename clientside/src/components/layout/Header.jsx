@@ -1,7 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import {Link} from 'react-router-dom'
 import { TiShoppingCart } from "react-icons/ti";
+import { Authcontext } from '../contextAPI/Authcontext';
 function Header () {
+  let [auth,setauth]=useContext(Authcontext);
+  let handlelogout=()=>{
+    setauth({
+      ...auth,user:null,token:""
+    });
+    localStorage.removeItem('auth');
+   // toast.success("Logout Successfully");
+   }
   return (
 <nav className="navbar navbar-expand-lg pg-link bg-light nav-head" >
   <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -16,15 +25,29 @@ function Header () {
       <li className="nav-item">
         <Link  className="nav-link pg-link" to="/category">Category</Link>
       </li>
-      <li className="nav-item">
-        <Link  className="nav-link pg-link" to="/register">Register</Link>
-      </li>
-      <li className="nav-item">
-        <Link  className="nav-link pg-link" to="/login">Login</Link>
-      </li>
-      <li className="nav-item">
-        <Link  className="nav-link pg-link" to="/Cartpage">Cart(0)</Link>
-      </li>
+      { !auth.user ?<><li className="nav-item">
+                       <Link  className="nav-link pg-link" to="/register">Register</Link>
+                      </li>
+                      <li className="nav-item">
+                        <Link  className="nav-link pg-link" to='/login'>Login</Link>
+                      </li>
+                      </>
+                      :<>
+                      <li class="nav-item dropdown">
+                      <Link href="#"  class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        {auth?.user?.name}
+                      </Link>
+                      <ul className="dropdown-menu dropdown-menu-dark">
+                        <li><Link className="dropdown-item" to={`/dashboard/${auth?.user?.role===1?"admin":"user"}`}>Dashboard</Link></li>
+                        <li><Link onClick={handlelogout} className="dropdown-item" to="/">LogOut</Link></li>
+                      </ul>
+                    </li>
+                   </>
+
+          }
+             <li className="nav-item">
+                 <Link  className="nav-link pg-link" to="/Cartpage">Cart(0)</Link>
+             </li>
     </ul>
   </div>
 </nav>
@@ -32,6 +55,11 @@ function Header () {
 }
 
 export default Header;
+
+/*<li className="nav-item">
+                          <Link  className="nav-link pg-link" to="/login">LogOut</Link>
+                       </li>*/
+
 /*
 import './header.css'
 function Header () {

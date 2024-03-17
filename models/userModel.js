@@ -28,6 +28,10 @@ const userSchema=new mongoose.Schema(
     unique:true
    },
    address:{
+    type:{},
+    required:true,
+   },
+   answer:{
     type:String,
     required:true,
    },
@@ -41,4 +45,5 @@ const userSchema=new mongoose.Schema(
 timestamps:true      //register time will add
 })
 //collection making
+//if we want to write the code in multiple line then we can use {} not string in type
 export default mongoose.model('users',userSchema);
