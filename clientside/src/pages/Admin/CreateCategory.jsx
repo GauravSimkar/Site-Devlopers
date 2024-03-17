@@ -4,7 +4,7 @@ import Adminmenu from "../../components/layout/Adminmenu";
 import { useState,useEffect } from "react";
 import axios from "axios";
 import Layout from "../../components/layout/layout";
-import {Modal} from 'antd';
+import Modal from 'react-bootstrap/Modal'
 let CreateCategory=()=>{
     let [categories,setcategories]=useState([]);
     let [name,setname]=useState("");
@@ -118,7 +118,7 @@ let CreateCategory=()=>{
             </tbody>
         </table>
         </div>
-        <Modal onCancel={()=>setvisible(false)} footer={null} v={visible}>
+        <Modal onHide={()=>setvisible(false)}  v={true}>
             <CategoryForm value={updatename} setvalue={setupdatename} handleonSubmit={handleupdate}/>
         </Modal>
         </div>

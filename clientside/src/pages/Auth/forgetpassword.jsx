@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 
-// import {toast} from 'react-toastify'
+import {ToastContainer, toast} from 'react-toastify'
 // import axios from 'axios';  //for network request
 import './forgetpassword.css';
 import Layout from '../../components/layout/layout';
-
+import axios from 'axios'; 
 
  function Forgetpassword () {
 
@@ -110,7 +110,7 @@ import Layout from '../../components/layout/layout';
         <form action="#">
           <div class="row">
             <i class="fas fa-user"></i>
-            <input type="text" placeholder="Email"nChange={handleemailChange} value={email} required></input>
+            <input type="text" placeholder="Email"onChange={handleemailChange} value={email} required></input>
           </div>
           <div class="row">
             <i class="fas fa-lock"></i>
@@ -131,22 +131,25 @@ import Layout from '../../components/layout/layout';
       </div>
     </center> */}
      <div class="login-box">
-        <h2>Login</h2>
-        <form>
+        <h2>Reset Password</h2>
+        <form action="#" onSubmit={handleSubmit}>
             <div class="user-box">
-                <input type="text" name="" required=""></input>
-                <label>Username</label>
+                <input type="text" onChange={handleemailChange} value={email}  required></input>
+                <label>Email</label>
             </div>
             <div class="user-box">
-                <input type="password" name="" required=""></input>
-                                  <label>Password</label>
+                <input type="text" onChange={handleanswerChange} value={answer} required></input>
+                <label>Your Answer</label>
             </div>
-            <a href="#">
-                
-                Submit
-            </a>
+                <div class="user-box">
+                <input type="password" onChange={handleresetpasswordChange} value={newpassword} required></input>
+                <label> New Password</label>
+            </div>
+            <input class="nice" type="submit" value="Reset"></input>
+            
         </form>
     </div>
+        <ToastContainer/>
      </>
 
 

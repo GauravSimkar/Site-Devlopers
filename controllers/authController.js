@@ -144,10 +144,11 @@ export const forgatPasswordController=async (req,res)=>{
         })
     }
     const hashed =await hashPassword(newpassword);
-    await userModel.findByIdAndUpdate(user._id,{password:hashed});
+     const tan=await userModel.findByIdAndUpdate(user._id,{password:hashed});
     res.status(200).send({
     success:true,
     message:"Password Reset Sucessfully",
+    tan,
     });
     //api made
 

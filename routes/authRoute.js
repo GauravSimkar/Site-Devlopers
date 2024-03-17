@@ -7,7 +7,7 @@ import { isadmin, requireSignin } from './../middlewares/authMiddleware.js';
 const router=express.Router();
 router.post("/register",registerController);  //by using exprees we make route
 router.post("/login",loginController);
-router.get("/forget-password",forgatPasswordController)
+router.post("/forget-password",forgatPasswordController)
 router.get("/test", requireSignin,isadmin,testControllers);
 //protected route auth
 router.get('/user-auth',requireSignin,(req,res)=>{
