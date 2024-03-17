@@ -1,4 +1,5 @@
 import Adminmenu from "../../components/layout/Adminmenu";
+import Layout from "../../components/layout/layout";
 const Users=()=>{
     return(
         <Layout>

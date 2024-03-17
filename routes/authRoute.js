@@ -18,4 +18,6 @@ router.get('/user-auth',requireSignin,(req,res)=>{
 router.get('/admin-auth',requireSignin,isadmin,(req,res)=>{
   res.status(200).send({ok:true});
 })
+//talha->work
+// router.get('/orders',requireSignin,getOrdersController);
 export default router;  

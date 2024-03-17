@@ -1,6 +1,8 @@
+import Usermenu from "../../components/layout/Usermenu";
+import Layout from "../../components/layout/layout";
 const Order=()=>{
     return(
-        <Layout>
+      <Layout>
         <div className="row">
           <div className="col-md-3">
              <Usermenu/>

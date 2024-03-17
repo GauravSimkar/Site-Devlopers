@@ -1,0 +1,32 @@
+.profile-details {
+    background: linear-gradient(135deg, #ff6f61, #ffdb7d);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out, transform 0.4s ease-in-out;
+  }
+  
+  .profile-details:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transform: perspective(1000px) rotateY(5deg);
+  }
+  
+  .profile-info {
+    color: #fff;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .profile-info::after {
+    content: "";
+    display: block;
+    height: 2px;
+    width: 100%;
+    background-color: #fff;
+    margin-top: 5px;
+  }
+  
+  .profile-info:hover {
+    color: #ffdb7d;
+  }
+  

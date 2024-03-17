@@ -158,3 +158,10 @@ export const forgatPasswordController=async (req,res)=>{
   }
 
 }
+//orders
+// export const getOrdersController =async()=>{
+//   try{
+
+//   }
+//   catch(error){}
+// }

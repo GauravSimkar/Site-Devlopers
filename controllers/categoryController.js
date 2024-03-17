@@ -1,28 +1,27 @@
 import slugify from "slugify";
 import categoryModel from "../models/categoryModel.js";
 
-export const createCateogryController=async(req,res)=>{
+export const createCategoryController=async(req,res)=>{
   try{
    const {name}=req.body;
    if(!name){
     return res.status(401).send({message:'Name is required'});
 
    }
-   const existingCateogry=await categoryModel.findOne({name});
-   if(existingCateogry){
+   const existingCategory=await categoryModel.findOne({name});
+   if(existingCategory){
     return res.status(200).send({
-      sucess:true,
-      message:'Cateogry Already Exists',
+      success:true,
+      message:'category Already Exists',
       
     })
   }
-  const cateogry=await new categoryModel({name,slug:slugify(name)}).save()
+  const category=await new categoryModel({name,slug:slugify(name)}).save()
   
   res.status(201).send({
-
-    sucess:true,
-    message:'New cateogry added',
-    cateogry,
+    success:true,
+    message:'New category added',
+    category,
   
   })
   }
@@ -30,22 +29,22 @@ export const createCateogryController=async(req,res)=>{
     console.log(error)
    res.status(500).send({
     success:false,
-    message:'Error in cateogry',
+    message:'Error in category',
     error,
 
    })
   }
 }
-//updatecateogry
-export const updateCateogryController=async(req,res)=>{
+//updatecategory
+export const updateCategoryController=async(req,res)=>{
 try{
   const {name}=req.body;
   const {id}=req.params;  //getting from url
-  const cateogry=await categoryModel.findByIdAndUpdate(id,{name,slug:slugify(name)}, {new:true});
+  const category=await categoryModel.findByIdAndUpdate(id,{name,slug:slugify(name)}, {new:true});
   res.status(200).send({
     success:true,
     message:"Successfully Updated",
-    cateogry,
+    category,
   });
 
 
@@ -54,20 +53,20 @@ catch(error){
   console.log(error)
   res.status(500).send({
    success:false,
-   message:'Error in Updating Cateogry',
+   message:'Error in Updating category',
    error,
 
 })
 }
 }
-///get cateogry
-export const cateogryController=async(req,res)=>{
+///get category
+export const categoryController=async(req,res)=>{
   try{
-    const cateogry=await categoryModel.find({});
+    const category=await categoryModel.find({});
     res.status(200).send({
       success:true,
       message:"All cateogies List",
-      cateogry
+      category
     })
 
   }
@@ -75,7 +74,7 @@ export const cateogryController=async(req,res)=>{
     console.log(error)
   res.status(500).send({
    success:false,
-   message:'Error while gettong Cateogry',
+   message:'Error while gettong category',
    error,
 
 })
@@ -83,15 +82,15 @@ export const cateogryController=async(req,res)=>{
   }
 
 }
-//single cateogry
-export const  singlecateogryController=async(req,res)=>{
+//single category
+export const  singlecategoryController=async(req,res)=>{
   try{
     
-    const cateogry =await categoryModel.findOne({slug:req.params.slug});
+    const category =await categoryModel.findOne({slug:req.params.slug});
     res.status(200).send({
       success:true,
       message:"A cateogies",
-      cateogry
+      category
     })
 
 
@@ -100,7 +99,7 @@ export const  singlecateogryController=async(req,res)=>{
     console.log(error)
   res.status(500).send({
    success:false,
-   message:'Error while gettong  single Cateogry',
+   message:'Error while gettong  single category',
    error,
 
 })
@@ -110,7 +109,7 @@ export const  singlecateogryController=async(req,res)=>{
 }
 
 //delete controller
-export const  deletecateogryController=async(req,res)=>{
+export const  deletecategoryController=async(req,res)=>{
   try{
     const {id}=req.params
   await categoryModel.findByIdAndDelete(id)

@@ -4,9 +4,9 @@ import Adminmenu from "../../components/layout/Adminmenu";
 import { useState,useEffect } from "react";
 import axios from "axios";
 import Layout from "../../components/layout/layout";
-import {Modal} from 'antd';
+import Modal from 'react-bootstrap/Modal';
 let CreateCategory=()=>{
-    let [categories,setcategories]=useState();
+    let [categories,setcategories]=useState([]);
     let [name,setname]=useState("");
     let [visible,setvisible]=useState(false);
     let [selected,setselected]=useState(null);
@@ -33,7 +33,7 @@ let CreateCategory=()=>{
             getAllcategory();
             setname("");
         }else{
-            toast.error(`${data.message}`);
+            toast.error(data.message);
         }
         }catch (error){
             console.log(error);
@@ -45,7 +45,8 @@ let CreateCategory=()=>{
   },[]); 
 
   //update category
-  let handleupdate=async()=>{
+  let handleupdate=async(event)=>{
+    event.preventDefault();
     try{
         let {data}=await axios.put(`${import.meta.env.REACT_APP_API}/api/v1/category/update-category/${selected._id}`,{name:updatename});
         if(data?.success){
@@ -55,7 +56,7 @@ let CreateCategory=()=>{
             setvisible(false);
             getAllcategory();
         }else{
-            toast.error(`${data.message}`);
+            toast.error(data.message);
         }
     }catch (error){
         console.log(error);
@@ -71,7 +72,7 @@ let CreateCategory=()=>{
             toast.success(`${Name} is deleted from category`);
             getAllcategory();
         }else{
-            toast.error(`${data.message}`);
+            toast.error(data.message);
         }
     }catch (error){
         console.log(error);
@@ -90,8 +91,8 @@ let CreateCategory=()=>{
     <div className="p-3 w-50">
       <CategoryForm handleonSubmit={handleonSubmit} value={name} setvalue={setname}/>
     </div>
-    <div>
-     <table class="table">
+    <div className="m-3 w-75">
+     <table class="table ">
         <thead>
             <tr>
             <th scope="col">Name</th>
@@ -115,8 +116,13 @@ let CreateCategory=()=>{
             </tbody>
         </table>
         </div>
-        <Modal onCancel={()=>setvisible(false)} footer={null} render={visible}>
-            <CreateForm value={updatename} setvalue={setupdatename} handleonSubmit={handleupdate}/>
+       <Modal onHide={()=>setvisible(false)}  visible={true}>
+        <Modal.Header closeButton>
+            <h3>Update category</h3>
+        </Modal.Header>
+        <Modal.Body>
+            <CategoryForm value={updatename} setvalue={setupdatename} handleonSubmit={handleupdate}/>
+            </Modal.Body>
         </Modal>
         </div>
         </div>
