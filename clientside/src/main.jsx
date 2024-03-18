@@ -36,7 +36,8 @@ import Order from './pages/user/Order.jsx';
 import CategoryProduct from './pages/CategoryProduct.jsx';
 import Products from './pages/Admin/Products.jsx'
 import UpdateProduct from './pages/Admin/UpdateProduct.jsx'
-/*import 'antd/dist/reset.css'*/
+// import 'antd/dist/reset.css'
+import ShopNow from './pages/Shopnow.jsx';
 
 
 const router=createBrowserRouter([
@@ -55,10 +56,11 @@ const router=createBrowserRouter([
     {path:"/dashboard/admin/create-product" , element:<CreateProduct/>},
     {path:"/dashboard/admin/create-category" , element:<CreateCategory/>},
     {path:"/dashboard/admin/products", element:<Products/>},
-    {path:"/dashboard/admin/update-product/:slug", element:<UpdateProduct/>},
+    {path:"/dashboard/admin/product/:slug", element:<UpdateProduct/>},
 
     {path:"/dashboard/admin/users" , element:<Users/>},
     ]},
+    {path:"/shop-now" , element:<ShopNow/>},
     {path:"/Categories" , element:<Categories/>},
     {path:"/Category/:slug" , element:<CategoryProduct/>},
     {path:'/register', element:<Register/>},

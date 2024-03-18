@@ -81,8 +81,9 @@ export const getProductController=async(req,res)=>{
   }
 };
 
+
 // getting single product
-export const getSingleProductController=async(req,res)=>{
+/*export const getSingleProductController=async(req,res)=>{
        try {
         const product =await productModel.findOne({slug:req.params.slug}).select('-photo').populate("category")
         res.status(200).send({
@@ -99,7 +100,35 @@ export const getSingleProductController=async(req,res)=>{
         }); 
 
        }
-}
+}*/
+
+export const getSingleProductController = async (req, res) => {
+    try {
+      const product = await productModel.findOne({ slug: req.params.slug }).select('-photo').populate("category");
+  
+      if (!product) {
+        return res.status(404).send({
+          success: false,
+          message: 'Product not found',
+        });
+      }
+  
+      res.status(200).send({
+        success: true,
+        message: 'Product found',
+        product,
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).send({
+        success: false,
+        message: 'Error in getting product',
+        error: error.message,
+      });
+    }
+  };
+  
+
 
 // getting photo
 export const productPhotoController = async(req,res) => {
@@ -314,7 +343,8 @@ export const productFiltersController=async(req,res)=>{
     export const  productcategoryController=async(req,res)=>{
         try{
       const categoryproduct=await categoryModel.findOne({slug:req.params.slug}); 
-      const products=await productModel.find({category}).populate('category');
+      console.log(categoryproduct);
+      const products=await productModel.find({category}).populate('cateogry');
       res.status(200).send({
          success:true,
          categoryproduct,

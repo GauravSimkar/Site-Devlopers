@@ -3,8 +3,10 @@ import {Link} from 'react-router-dom'
 import { TiShoppingCart } from "react-icons/ti";
 import { Authcontext } from '../contextAPI/Authcontext';
 import useCategory from '../../hooks/useCategory';
+import { Cartcontext } from '../contextAPI/Cartcontext';
 function Header () {
   let [auth,setauth]=useContext(Authcontext);
+  const {quantity}=useContext(Cartcontext);
   const categories=useCategory()
   let handlelogout=()=>{
     setauth({
@@ -63,7 +65,7 @@ function Header () {
 
           }
              <li className="nav-item">
-                 <Link  className="nav-link pg-link" to="/Cartpage">Cart(0)</Link>
+                 <Link  className="nav-link pg-link" to="/Cartpage">Cart({quantity})</Link>
              </li>
     </ul>
   </div>

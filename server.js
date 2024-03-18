@@ -21,7 +21,7 @@ app.use(express.json());  //jo meera data aa raaha hai usko jsomn object recogni
 app.use(morgan('dev'));
 app.use('/api/v1/auth',authRoutes);
 app.use('/api/v1/category',cateogryRoutes);
-app.use('/api/v1/category',categoryRoutes);
+
 app.use('/api/v1/product',productRoutes)
 
 
