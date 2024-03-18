@@ -201,6 +201,7 @@ res.status(200).send({
     error
    })
  }
+
 }
 //order done by user
 export const getOrdersControllers=async(req,res)=>{
@@ -243,3 +244,15 @@ export const getAllOrdersControllers=async(req,res)=>{
      })
   }
 }
+
+
+
+
+//orders
+// export const getOrdersController =async()=>{
+//   try{
+
+//   }
+//   catch(error){}
+// }
+

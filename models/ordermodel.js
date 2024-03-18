@@ -3,7 +3,7 @@ const orderSchema=new mongoose.Schema({
  products:[
   {
     type: mongoose.ObjectId,
-     ref:'Products',   //made connection with products
+     ref:'products',   //made connection with products
 }
 ],
 payment:{},

@@ -18,7 +18,7 @@ const productSchema = new mongoose.Schema({
     },
     category:{
         type:mongoose.ObjectId,
-        ref:'Cateogry', //necessary when we select a category the product should be shown
+        ref:'cateogry', //necessary when we select a category the product should be shown
         required:true,
     },
     quantity:{
@@ -36,4 +36,4 @@ const productSchema = new mongoose.Schema({
 },{timeStamps:true}
 );
 
-export default mongoose.model("Products",productSchema);
+export default mongoose.model("products",productSchema);

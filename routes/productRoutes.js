@@ -23,7 +23,7 @@ router.post(
         updateProductcontroller);
 
     // get products
-    router.get('/get-product',getProductController);
+    router.get('/getmyproduct',getProductController);
 
     // single product
     router.get('/get-product/:slug',getSingleProductController);

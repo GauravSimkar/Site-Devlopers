@@ -19,6 +19,9 @@ import Error from './components/Error.jsx'
 import {RouterProvider,createBrowserRouter} from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
+
+import GoogleMap from './components/GoogleMap.jsx';
+
 import PrivateRouter from './components/Routes/Private.jsx';
 import AdminPrivateRouter from './components/Routes/AdminPrivate.jsx';
 import AdminProfile from './pages/Admin/AdmineProfile.jsx';
@@ -27,9 +30,13 @@ import CreateCategory from './pages/Admin/CreateCategory.jsx';
 import Users from './pages/Admin/Users.jsx';
 import Profile from './pages/user/Profile.jsx';
 import Order from './pages/user/Order.jsx';
+
  //import 'antd/dist/reset.css'
  import Categories from './pages/Categories.jsx'
 import CategoryProduct from './pages/CategoryProduct.jsx';
+import Products from './pages/Admin/Products.jsx'
+import UpdateProduct from './pages/Admin/UpdateProduct.jsx'
+/*import 'antd/dist/reset.css'*/
 
 
 const router=createBrowserRouter([
@@ -47,6 +54,9 @@ const router=createBrowserRouter([
     {path:"/dashboard/admin/profile" , element:<AdminProfile/>},
     {path:"/dashboard/admin/create-product" , element:<CreateProduct/>},
     {path:"/dashboard/admin/create-category" , element:<CreateCategory/>},
+    {path:"/dashboard/admin/products", element:<Products/>},
+    {path:"/dashboard/admin/update-product/:slug", element:<UpdateProduct/>},
+
     {path:"/dashboard/admin/users" , element:<Users/>},
     ]},
     {path:"/Categories" , element:<Categories/>},
@@ -65,18 +75,16 @@ const router=createBrowserRouter([
     {path:'/Cartpage',element:<CartPages/>},
     {path:'/privacy-policy',element:<PrivacyPolicy/>},
     {path:'*',element:<Error/>}, 
+ 
   ],},
 ]);
 
 const bcolor=document.getElementById('root');
 bcolor.style.background= '#FAF7F0 '; 
-bcolor.style.width='100vw';
-bcolor.style['min-height']='100vh';
-
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
      <RouterProvider router={router}/>
-    <App />
+        <App />
     <ToastContainer/> 
   </React.StrictMode>,
 )

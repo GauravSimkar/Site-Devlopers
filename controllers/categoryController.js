@@ -1,6 +1,5 @@
 import slugify from "slugify";
 import categoryModel from "../models/categoryModel.js";
-
 export const createcategoryController=async(req,res)=>{
   try{
    const {name}=req.body;
@@ -19,7 +18,6 @@ export const createcategoryController=async(req,res)=>{
   const category=await new categoryModel({name,slug:slugify(name)}).save()
   
   res.status(201).send({
-
     success:true,
     message:'New category added',
     category,

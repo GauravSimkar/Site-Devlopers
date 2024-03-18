@@ -30,4 +30,6 @@ router.get('/all-order',requireSignin,isadmin,getAllOrdersControllers);
 
 
 
+//talha->work
+// router.get('/orders',requireSignin,getOrdersController);
 export default router;  

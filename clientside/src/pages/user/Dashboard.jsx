@@ -2,7 +2,6 @@ import Layout from "../../components/layout/layout.jsx";
 import { useContext } from "react";
 import { Authcontext } from "../../components/contextAPI/Authcontext";
 import Usermenu from "../../components/layout/Usermenu.jsx";
-
 const Dashboard=()=>{
     const [auth]=useContext(Authcontext);
     return(
