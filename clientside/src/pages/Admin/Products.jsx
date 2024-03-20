@@ -88,14 +88,22 @@ const Products = () => {
         </div>
         <div className="col-md-9 ">
           <h1 className='text-center'>All Products List</h1>
-          <div className="d-flex">
+          <div className="d-flex flex-wrap">
             {products.map((p) => (
-                         <div className="card m-2" style={{ width: "18rem" }}>
-                  <img src={`${import.meta.env.REACT_APP_API}/api/v1/product/product-photo/${p._id}`} className="card-img-top" alt={p.name}/>
-                  <div className="card-body">
-                    <h5 className="card-title">{p.name}</h5>
-                    <p className="card-text">{p.description}</p>
-                                     </div>
+                         <div className="card m-2" style={{ width: "18rem"}}>
+                  <img src={`${import.meta.env.REACT_APP_API}/api/v1/product/product-photo/${p._id}`} className="card-img-top" 
+                  style={{height:"150px"}} alt={p.name}/>
+                  <hr style={{['border-width']:"3px",['margin-bottom']:"0px"}}/>
+
+                  <div className="card-body"  style={{height:"200px"}}>
+                  <span style={{['font-size']:"24px",['font-weight']:"500",['display']:"-webkit-box",
+                  ['-webkit-line-clamp']:"2",
+                  ['-webkit-box-orient']:"vertical",
+                  ['overflow']:"hidden"}} 
+                  className="card-title">{p.name}</span>
+                  <p style={{['margin-bottom']:"0px"}} className="card-text">{p.description.substring(0, 30)}</p>
+                  <p className="card-text">${p.price}</p>
+                </div>
                 </div>
                   ))}
           </div>

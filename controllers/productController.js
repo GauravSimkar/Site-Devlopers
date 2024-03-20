@@ -228,7 +228,7 @@ export const productFiltersController=async(req,res)=>{
       if(radio.length){
         args.price={$gte:radio[0],$lte:radio[1]};   //we find the price from the the selected cateoogry
       }
-      const products=await productModel.find(args.category);//postman run
+      const products=await productModel.find(args);//postman run
       res.status(200).send({
         success:true,
         products,
@@ -342,12 +342,12 @@ export const productFiltersController=async(req,res)=>{
     //product when category 
     export const  productcategoryController=async(req,res)=>{
         try{
-      const categoryproduct=await categoryModel.findOne({slug:req.params.slug}); 
-      console.log(categoryproduct);
-      const products=await productModel.find({category}).populate('cateogry');
+      const category=await categoryModel.findOne({slug:req.params.slug}); 
+    //   console.log(categoryproduct);
+      const products=await productModel.find({ category }).populate('category');
       res.status(200).send({
          success:true,
-         categoryproduct,
+         category,
          products
       })
         }
@@ -372,7 +372,7 @@ export const braintreetokenController=async(req,res)=>{
             else{
                 res.send(response);
             }
-        })
+        });
 
     }
     catch(error){

@@ -5,7 +5,7 @@
   }
   
   body{
-    background-color: rgb(143, 141, 138);
+    background-color: rgb(186, 182, 182);
     overflow-x: hidden;
     overflow-y: scroll;
     width:100vw;
@@ -149,3 +149,76 @@ h5{
   border-radius: 4px;
   outline: none;
 }
+
+/*
+.card {
+  background: #f8f9fa; /* Fallback color 
+  background: linear-gradient(180deg, #f8f9fa 0%, #dcdcdc 100%); /* Gradient background 
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  transition: box-shadow 0.3s ease, background-color 0.3s ease; /* Smooth transition for box shadow and background color 
+}
+
+.card:hover {
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Box shadow on hover 
+  background: linear-gradient(180deg, #f0f0f0 0%, #d3d3d3 100%); /* Gradient background on hover 
+}
+
+.cat-btn {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth transition for background color 
+  text-decoration: none;
+}
+
+.cat-btn:hover {
+  background-color: #0056b3; /* Background color on hover 
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+}
+*/
+
+/********************Category filter*********************************/
+
+.card1 {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 15px;
+  transition: box-shadow 0.3s ease;
+}
+
+.card1:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.cat-btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  background-color: #5f666d;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.cat-btn:hover {
+  background-color: #0056b3;
+}
+
+/*****************************************Home page********************************/
+ 

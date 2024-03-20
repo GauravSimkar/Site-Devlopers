@@ -12,7 +12,7 @@ const Usermenu=()=>{
         seta(position);
     }
 
-    useEffect(() => {
+  /*  useEffect(() => {
         const links = document.querySelectorAll('.sidebar-link span');
         links.forEach((link, index) => {
             link.classList.remove('active-link');
@@ -21,7 +21,7 @@ const Usermenu=()=>{
             }
         });
     }, [a]);
-
+*/
 
     
 return(
@@ -30,7 +30,7 @@ return(
         <h5>User Pannel</h5>
         <div className="sidebar-link">
         <span className={a===1 ?'active-link':''} onClick={()=>handleLink(1)}>
-            <Link to="/dashboard/user/profile"><FaUserCircle  className="a-icon" />Your Profile</Link>
+            <Link to="/dashboard/user/profile"><FaUserCircle  className="a-icon" />Update Profile</Link>
         </span>
         <span className={a===2 ? 'active-link':''}  onClick={()=>handleLink(2)}>
             <Link to="/dashboard/user/order"  ><PiShoppingBagOpenFill className="a-icon" />Your orders</Link>

@@ -250,9 +250,9 @@ const CreateProduct = () => {
           <div className="col-md-3">
             <Adminmenu/>
           </div>
-          <div className="col-md-9">
-            <h1>Create Product</h1>
-            <div className="m-1 w-75">
+          <div className="col-md-8">
+          <h1 className="mb-4">Create Product</h1>
+          <div className="m-1">
               <Select
                 bordered={false}
                 placeholder="Select a category"
@@ -312,7 +312,8 @@ const CreateProduct = () => {
                 />
               </div>
 
-              <div className="mb-3">
+              <div className="row g-3">
+          <div className="col-md-6 mb-3">
                 <input
                   type="number"
                   value={price}
@@ -321,7 +322,7 @@ const CreateProduct = () => {
                   onChange={(e) => setPrice(e.target.value)}
                 />
               </div>
-              <div className="mb-3">
+              <div className="col-md-6 mb-3">
                 <input
                   type="number"
                   value={quantity}
@@ -329,6 +330,7 @@ const CreateProduct = () => {
                   className="form-control"
                   onChange={(e) => setQuantity(e.target.value)}
                 />
+              </div>
               </div>
               <div className="mb-3">
                 <Select
@@ -345,8 +347,8 @@ const CreateProduct = () => {
                   <Option value="1">Yes</Option>
                 </Select>
               </div>
-              <div className="mb-3">
-                <button className="btn btn-primary" onClick={handleCreate}>
+              <div className="mb-4 ">
+                <button className="btn btn-primary btn-lg col-4" onClick={handleCreate}>
                   CREATE PRODUCT
                 </button>
               </div>

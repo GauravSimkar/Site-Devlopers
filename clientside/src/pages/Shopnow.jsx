@@ -1,12 +1,12 @@
 import { useEffect,useState,useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { Checkbox,Radio } from 'antd';
 import {Prices} from '../components/prices';
 import axios from "axios";
-import {toast} from "react-toastify"
+// import {toast} from "react-toastify"
 import Layout from '../components/layout/layout';
-import {AiOutlineReload} from "react-icons/ai";
-import Categories from './Categories';
+// import {AiOutlineReload} from "react-icons/ai";
+// import Categories from './Categories';
 import { Cartcontext } from '../components/contextAPI/Cartcontext';
 
 const ShopNow=()=>{
@@ -16,6 +16,8 @@ const ShopNow=()=>{
   const [categories,setCategories]=useState([]);
   const [checked,setChecked]=useState([]);
   const [radio,setRadio]=useState([]);
+  const [total,setTotal]=useState(0);
+  const [page,setPage]=useState(1);
 
   const getAllCategory=async ()=>{
     try{
@@ -32,13 +34,24 @@ if(data?.success){
 
   useEffect(()=>{
     getAllCategory();
+    getTotal();
   },[]);
 
 const getAllProducts=async()=>{
   try{
-    const {data}=await axios.get(`${import.meta.env.REACT_APP_API}/api/v1/product/getmyproduct`);
+    const {data}=await axios.get(`${import.meta.env.REACT_APP_API}/api/v1/product/product-list/${page}`);
+    console.log(data);
     setProducts(data?.products);
   } catch (error){
+    console.log(error);
+  }
+};
+
+const getTotal = async () => {
+  try {
+    const { data } = await axios.get(`${import.meta.env.REACT_APP_API}/api/v1/product/product-count`);
+    setTotal(data?.total);
+  } catch (error) {
     console.log(error);
   }
 };
@@ -51,29 +64,42 @@ const handleFilter=(value,id)=>{
   if(value){
     all.push(id);
   }else{
-    all=all.filter(c=>c!==id)
+    all=all.filter((c)=>c!==id);
   }
   setChecked(all);
-}
+};
 
 
-useEffect(()=>{
-  getAllProducts();
-},[]);
-//console.log( typeof categories);
+useEffect(() => {
+  if (!checked.length || !radio.length) getAllProducts();
+}, [checked.length, radio.length]);
 
-//console.log(categories);
+
+useEffect(() => {
+  if (checked.length || radio.length) filterProduct();
+}, [checked, radio]);
+
+const filterProduct = async () => {
+  try {
+    const { data } = await axios.post(`${import.meta.env.REACT_APP_API}/api/v1/product/filter-product`,{checked,radio})
+  
+    setProducts(data?.products);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 return(
    <Layout>
-        <div className='row mt-3'>
-              <div className='col-md-3'>
+        <div className='row p-4 '>
+              <div className='col-md-2 mt-5 filter'>
                <h4 className='text-center'>Filter by category</h4>
                <div className="d-flex flex-column">
-                 {categories?.map((c)=>
+                 {categories?.map(c=>(
                    <Checkbox key={c._id} onChange={(e)=> handleFilter(e.target.checked,c._id)}>
                      {c.name}
                    </Checkbox>
-)}
+))}
                </div>
                <h4 className='text-center mt-4'>Filter By Price</h4> 
                <div className='d-flex flex-column'>
@@ -88,22 +114,28 @@ return(
                       )}
                    </Radio.Group>
                </div>
+               <div className='d-flex flex-column'>
+                <button className='btn btn-danger col-md-8 ' style={{width:"120px",height:"40px"}}
+                onClick={()=>window.location.reload()}>
+                  RESET FILTER
+                </button>
+               </div>
+
               </div>
 
-        <div className='col-md-9'>
-          {JSON.stringify(radio,null,4)}
+         {/* <div className='col-md-9'>
           <h1 className='text-center'>All Products</h1>
           <div className="d-flex flex-wrap">
               {products.map((p)=>(
                       <div className="card m-2" style={{ width: "18rem" }}>             
-                      <img src={`${import.meta.env.REACT_APP_API}/api/v1/product/product-photo/${p._id}`} className="card-img-top"        alt={p. name}/>
+                      <img src={`${import.meta.env.REACT_APP_API}/api/v1/product/product-photo/${p._id}`} className="card-img-top"        alt={p.name}/>
                    <div className="card-body">          
 
                         <h5 className="card-title">{p.name}</h5>
-                        <p className="card-text">{p.description}</p>
+                        <p className="card-text">{p.description.substring(0,30)}</p>
                         <p className="card-text">{p.price}</p>
                 
-                           <button tupe="button" clsssName="btn btn-success  px-4 col-md-12" 
+                           <button tupe="button" clsssName="btn btn-danger btn-outline-dark btn-lg px-4 col-md-10" 
                            onClick={()=> addToCart(p.name,p.price,p.description,p._id)}
                            >Add to Cart</button>                         
                    </div>
@@ -111,9 +143,38 @@ return(
             ))}
        </div>
 
-
-
+      </div>  */}
+         <div className='col-md-9'>
+  {/* {JSON.stringify(radio,null,4)} */}
+  <h1 className='text-center'>All Products</h1>
+  <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+    {products.map((p) => (
+      <div className="col mb-4 " key={p._id}>
+        <div className="card  ">
+          <img src={`${import.meta.env.REACT_APP_API}/api/v1/product/product-photo/${p._id}`} className="card-img-top" alt={p.name} style={{height:"150px"}} />
+          <hr style={{['border-width']:"3px",['margin-bottom']:"0px"}}/>
+          <div className="card-body d-flex flex-column" style={{height:"250px"}}>
+            <span style={{['font-size']:"24px",['font-weight']:"500",['display']:"-webkit-box",
+            ['-webkit-line-clamp']:"2",
+            ['-webkit-box-orient']:"vertical",
+            ['overflow']:"hidden"}} 
+            className="card-title">{p.name}</span>
+          
+            <p style={{['margin-bottom']:"0px"}} className="card-text">{p.description.substring(0, 30)}</p>
+          
+            <p className="card-text">${p.price}</p>
+            <div className="mt-auto">
+      <button style={{ width: "96%" }} type="button" className="btn btn-danger btn-outline-dark px-4" onClick={() => addToCart(p.name, p.price, p.description, p._id)}>
+        Add to Cart
+      </button>
+    </div>
+          </div>
+        </div>
       </div>
+    ))}
+  </div>
+</div>
+
 
 
         </div>

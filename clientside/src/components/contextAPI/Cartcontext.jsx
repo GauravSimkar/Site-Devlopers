@@ -44,7 +44,8 @@ const CartContextProvider = ({ children }) => {
       name,
       description,
       price,
-      photo_id
+      photo_id,
+      id:Math.random().toString(36).substring(2)
     }];
 
     const updatedQuantity = quantity + 1;
@@ -60,7 +61,7 @@ const CartContextProvider = ({ children }) => {
     let updatedCart=[];
     let  updatedTotalCost;
     cart.forEach((o)=>{
-     if(o.photo_id!==id)
+     if(o.id!==id)
      updatedCart.push(o);
     else updatedTotalCost = totalCost - o.price;
     });

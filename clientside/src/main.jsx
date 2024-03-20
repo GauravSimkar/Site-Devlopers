@@ -74,6 +74,8 @@ const router=createBrowserRouter([
 
     {path:'/Aboutus',element:<Aboutus/>},
     {path:'/Contactus',element:<Contactus/>},
+      {path:"/google-map",element:<GoogleMap/>
+    },
     {path:'/Cartpage',element:<CartPages/>},
     {path:'/privacy-policy',element:<PrivacyPolicy/>},
     {path:'*',element:<Error/>}, 
