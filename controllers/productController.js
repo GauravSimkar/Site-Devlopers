@@ -343,7 +343,7 @@ export const productFiltersController=async(req,res)=>{
     export const  productcategoryController=async(req,res)=>{
         try{
       const category=await categoryModel.findOne({slug:req.params.slug}); 
-    //   console.log(categoryproduct);
+      console.log(categoryproduct);
       const products=await productModel.find({ category }).populate('category');
       res.status(200).send({
          success:true,

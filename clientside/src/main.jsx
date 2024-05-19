@@ -31,7 +31,7 @@ import Users from './pages/Admin/Users.jsx';
 import Profile from './pages/user/Profile.jsx';
 import Order from './pages/user/Order.jsx';
 
- //import 'antd/dist/reset.css'
+ 
  import Categories from './pages/Categories.jsx'
 import CategoryProduct from './pages/CategoryProduct.jsx';
 import Products from './pages/Admin/Products.jsx'

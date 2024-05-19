@@ -27,6 +27,7 @@ nav {
   left: 0;
   background-color: #5fdfc7;
   z-index: 99;
+  padding-right:40px;
 }
 
 .nav__content {

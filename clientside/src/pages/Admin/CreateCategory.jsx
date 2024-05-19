@@ -163,14 +163,18 @@ import  {toast} from 'react-toastify'
  import Adminmenu from "../../components/layout/Adminmenu";
 import axios from "axios";
 import CategoryForm from "../../components/Form/CategoryForm";
-import { Modal } from "antd";
+// import { Modal } from "antd";
+import {Modal,ModalHeader} from "reactstrap";
 const CreateCategory = () => {
+ 
   const [categories, setCategories] = useState([]);
   const [name, setName] = useState("");
   const [visible, setVisible] = useState(false);
-  const [selected, setSelected] = useState(null);
+  const [selected, setSelected] = useState(num);
   const [updatedName, setUpdatedName] = useState("");
   //handle Form
+  var num=selected;
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -207,12 +211,14 @@ const CreateCategory = () => {
   }, []);
 
   //update category
-  const handleUpdate = async (e) => {
-    e.preventDefault();
+  const handleUpdate = async (categoryname,value) => {
+    // console.log(categoryname);
+    //  e.preventDefault();
+    
     try {
       const { data } = await axios.put(
-        `${import.meta.env.REACT_APP_API}/api/v1/category/update-category/${selected._id}`,
-        { name: updatedName }
+        `${import.meta.env.REACT_APP_API}/api/v1/category/update-category/${value}`,
+        { name: categoryname }
       );
       if (data?.success) {
         toast.success(`${updatedName} is updated`);
@@ -241,9 +247,16 @@ const CreateCategory = () => {
         toast.error(data.message);
       }
     } catch (error) {
-      toast.error("Somtihing went wrong");
+      toast.error("Something went wrong");
     }
   };
+  
+  const Updatecatogory=(value)=>{
+   var categoryname= prompt('Enter Your Name?');
+  //  console.log(categoryname);
+    handleUpdate(categoryname,value);
+  }
+
   return (
     <Layout title={"Dashboard - Create Category"}>
       <div className="container-fluid m-3 p-3 dashboard">
@@ -276,17 +289,24 @@ const CreateCategory = () => {
                         <td key={c._id}>{c.name}</td>
                         <td>
                           <button
-                            className="btn btn-primary ms-2"
+                            className="btn btn-info"
                             onClick={() => {
-                              setVisible(true);
-                              setUpdatedName(c.name);
-                              setSelected(c);
+                              // setVisible(true);
+                                                       
+                              Updatecatogory(c._id);
+                              
+                              //  setUpdatedName(c.name);
+                              
+                              // {visible&&<Modal/>}
+                              
                             }}
                           >
-                            Edit
+                        Edit
+                      
+                           
                           </button>
                           <button
-                            className="btn btn-danger ms-2"
+                            className="btn btn-danger"
                             onClick={() => {
                               handleDelete(c._id);
                             }}
@@ -300,17 +320,18 @@ const CreateCategory = () => {
                 </tbody>
               </table>
             </div>
-            <Modal
+            {/* <Modal
               onCancel={() => setVisible(false)}
               footer={null}
               v={visible}
-            >
+              >
+            
               <CategoryForm
                 value={updatedName}
                 setValue={setUpdatedName}
                 handleSubmit={handleUpdate}
               />
-            </Modal>
+            </Modal> */}
           </div>
         </div>
       </div>

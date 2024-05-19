@@ -22,7 +22,7 @@ function Header () {
   </button>
   <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
     <Link className="navbar-brand ecommerce" to="#"><span className='head-icon'><TiShoppingCart/></span> E-commerce App</Link>
-    <ul className="navbar-nav ms-auto mt-2 mt-lg-0">
+    <ul className="navbar-nav ms-auto mt-2 mt-lg-0 ml-3">
       <li className="nav-item active">
         <Link   className="nav-link pg-link" to="/">Home</Link>
       </li>
@@ -64,9 +64,10 @@ function Header () {
                    </>
 
           }
-             <li className="nav-item">
+          {auth?.user?.role!==1&&<li className="nav-item">
                  <Link  className="nav-link pg-link" to="/Cartpage">Cart({quantity})</Link>
-             </li>
+             </li>}
+             
     </ul>
   </div>
 </nav>
