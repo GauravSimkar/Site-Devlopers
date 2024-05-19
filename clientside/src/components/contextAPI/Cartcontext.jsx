@@ -1,37 +1,28 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import { Authcontext } from "./Authcontext";
 
 export const Cartcontext = createContext({
   cart: [],
-  quantity: 0,
-  totalCost: 0,
   addToCart: () => {},
   removeFromCart:()=>{}
 });
 
 const CartContextProvider = ({ children }) => {
+  const [auth]=useContext(Authcontext);
   const [cart, setCart] = useState([]);
-  const [quantity, setQuantity] = useState(0);
-  const [totalCost, setTotalCost] = useState(0);
   const [saveCart,setsaveCart]=useState(false);
 
   useEffect(() => {
     const cartData = JSON.parse(localStorage.getItem('cart')) || [];
-    const savedQuantity = JSON.parse(localStorage.getItem('quantity')) || 0;
-    const savedTotalCost = JSON.parse(localStorage.getItem('totalCost')) || 0;
-
-    updateCartState(cartData, savedQuantity, savedTotalCost);
+    updateCartState(cartData);
   }, []);
 
   const updateCartState = (cartData, savedQuantity, savedTotalCost) => {
     setCart(cartData);
-    setQuantity(savedQuantity);
-    setTotalCost(savedTotalCost);
   };
 
   const saveCartData = () => {
     localStorage.setItem('cart', JSON.stringify(cart));
-    localStorage.setItem('quantity', JSON.stringify(quantity));
-    localStorage.setItem('totalCost', JSON.stringify(totalCost));
   };
 
   if(saveCart){
@@ -40,21 +31,18 @@ const CartContextProvider = ({ children }) => {
   }
 
   const addToCart = (name, price, description, photo_id) => {
+    if(auth?.user){
     const updatedCart = [...cart, {
+      user_id:auth?.user?.id,
       name,
       description,
       price,
       photo_id,
       id:Math.random().toString(36).substring(2)
     }];
-
-    const updatedQuantity = quantity + 1;
-    const updatedTotalCost = totalCost + price;
-
     setCart(updatedCart);
-    setQuantity(updatedQuantity);
-    setTotalCost(updatedTotalCost);
     setsaveCart(true);
+  }
   };
 
   const removeFromCart=(id)=>{
@@ -63,20 +51,14 @@ const CartContextProvider = ({ children }) => {
     cart.forEach((o)=>{
      if(o.id!==id)
      updatedCart.push(o);
-    else updatedTotalCost = totalCost - o.price;
     });
-    const updatedQuantity = quantity - 1;
-    setCart(updatedCart);
-    setQuantity(updatedQuantity);
-    setTotalCost(updatedTotalCost);
     setsaveCart(true);
   }
 
+  const renderCart=cart.filter((cartitem)=>auth?.user&&auth?.user?.id===cartitem.user_id);
   return (
     <Cartcontext.Provider value={{
-      cart,
-      quantity,
-      totalCost,
+      renderCart,
       addToCart,
       removeFromCart
     }}>
