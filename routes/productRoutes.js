@@ -4,6 +4,7 @@ import { braintreepaymentController, braintreetokenController, createProductcont
 import formidable from 'express-formidable'
 
 
+
 const router=express.Router()
 
 router.post(
@@ -49,6 +50,8 @@ router.post(
   router.post('/braintree/payment',requireSignin,braintreepaymentController)
 
 router.put('/order-status/:orderId',requireSignin,isadmin,orderStatusController);
+//search product
+
 
 
 export default router;

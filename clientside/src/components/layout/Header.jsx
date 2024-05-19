@@ -4,6 +4,7 @@ import { TiShoppingCart } from "react-icons/ti";
 import { Authcontext } from '../contextAPI/Authcontext';
 import useCategory from '../../hooks/useCategory';
 import { Cartcontext } from '../contextAPI/Cartcontext';
+import Searchinput from '../Form/searchinput';
 function Header () {
   let [auth,setauth]=useContext(Authcontext);
   const {quantity}=useContext(Cartcontext);
@@ -23,6 +24,7 @@ function Header () {
   <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
     <Link className="navbar-brand ecommerce" to="#"><span className='head-icon'><TiShoppingCart/></span> E-commerce App</Link>
     <ul className="navbar-nav ms-auto mt-2 mt-lg-0 ml-3">
+      <Searchinput></Searchinput>
       <li className="nav-item active">
         <Link   className="nav-link pg-link" to="/">Home</Link>
       </li>

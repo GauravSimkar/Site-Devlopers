@@ -5,6 +5,7 @@ import categoryModel from "../models/categoryModel.js";
 import braintree from "braintree";
 import ordermodel from "../models/ordermodel.js";
 import dotenv from "dotenv";
+
 dotenv.config();
 
 //payment gateway
@@ -293,10 +294,10 @@ export const productFiltersController=async(req,res)=>{
     export const searchProductController=async(req,res)=>{
         try{
             //logic
-            const {keyword}=req.params
+            const {keyword}=req.params.keyword   
             const results=await productModel.find({
                 $or:[
-                    {name:{$regex:keyword,$options:"i"}},/*<field>: This should be replaced with the name of the field in your MongoDB collection that you want to perform the regex query on.
+                    {name:{$regex: keyword, $options:"i"}},/*<field>: This should be replaced with the name of the field in your MongoDB collection that you want to perform the regex query on.
                     "pattern": This is the regular expression pattern you want to match against the field's value.
                     <options>: This should be replaced with the options for the regex search. Common options include:
                     "i": Perform case-insensitive matching.*/
@@ -304,6 +305,7 @@ export const productFiltersController=async(req,res)=>{
 
                 ],
             }).select("-photo");
+            console.log(results);
             res.json(results);
 
         }
@@ -433,4 +435,7 @@ else{
 
         }
     }
+
+
+
 

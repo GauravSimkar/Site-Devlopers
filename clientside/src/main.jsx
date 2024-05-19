@@ -38,6 +38,7 @@ import Products from './pages/Admin/Products.jsx'
 import UpdateProduct from './pages/Admin/UpdateProduct.jsx'
 // import 'antd/dist/reset.css'
 import ShopNow from './pages/Shopnow.jsx';
+import { SearchcontextProvider } from './components/contextAPI/search.jsx';
 
 
 const router=createBrowserRouter([
@@ -87,8 +88,12 @@ const bcolor=document.getElementById('root');
 bcolor.style.background= '#FAF7F0 '; 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+    <SearchcontextProvider>
+
+    
      <RouterProvider router={router}/>
         <App />
     <ToastContainer/> 
+    </SearchcontextProvider>
   </React.StrictMode>,
 )
