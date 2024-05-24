@@ -25,7 +25,6 @@ const Usermenu=()=>{
 
     
 return(
-
     <div className="sidebar-container">
         <h5>User Pannel</h5>
         <div className="sidebar-link">
@@ -37,7 +36,6 @@ return(
         </span>
         </div>
     </div>
-
 );
 }
 

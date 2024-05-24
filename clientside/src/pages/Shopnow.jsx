@@ -40,7 +40,6 @@ if(data?.success){
 const getAllProducts=async()=>{
   try{
     const {data}=await axios.get(`${import.meta.env.REACT_APP_API}/api/v1/product/product-list/${page}`);
-    console.log(data);
     setProducts(data?.products);
   } catch (error){
     console.log(error);

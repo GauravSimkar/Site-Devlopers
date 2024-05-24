@@ -1,6 +1,6 @@
 import express from 'express'
 import{ isadmin, requireSignin} from '../middlewares/authMiddleware.js'
-import { braintreepaymentController, braintreetokenController, createProductcontroller, deleteProductController, getProductController, getSingleProductController, orderStatusController, productFiltersController, productPhotoController, productcategoryController, productcountController, productlistController, relatedProductController, searchProductController, updateProductcontroller } from '../controllers/productController.js'
+import { brainTreePaymentController, braintreeTokenController, createProductcontroller, deleteProductController, getProductController, getSingleProductController, orderStatusController, productFiltersController, productPhotoController, productcategoryController, productcountController, productlistController, relatedProductController, searchProductController, updateProductcontroller } from '../controllers/productController.js'
 import formidable from 'express-formidable'
 
 
@@ -44,9 +44,9 @@ router.post(
 
   
   //token for account verification
-   router.get('/braintree/token',braintreetokenController);
+   router.get('/braintree/token',braintreeTokenController);
   //payment routes 
-  router.post('/braintree/payment',requireSignin,braintreepaymentController)
+  router.post('/braintree/payment',requireSignin,brainTreePaymentController)
 
 router.put('/order-status/:orderId',requireSignin,isadmin,orderStatusController);
 

@@ -188,12 +188,6 @@ res.status(200).send({
   message:"Profile updated Successfully",
   updatedUser,
   });
-
-
-
-
-
-
  } catch (error) {
   console.log(error);
   res.status(500).send({ 
@@ -209,8 +203,7 @@ export const getOrdersControllers=async(req,res)=>{
   try{
     //logic
     const orders=await ordermodel.find({buyer:req.user._id}).populate("products","-photo").populate("buyer","name")
-    res.json(orders);
-       res.status(200).send({
+       res.status(200).json({
         success:true,
         message: 'Order placed',
         orders
@@ -228,9 +221,8 @@ export const getOrdersControllers=async(req,res)=>{
 export const getAllOrdersControllers=async(req,res)=>{
   try{
     //logic
-    const orders=await ordermodel.find({}).populate("products","-photo").populate("buyer","name").sort({createdAt:"-1"});
-    res.json(orders);
-       res.status(200).send({
+    const orders=await ordermodel.find({}).populate("products","-photo").populate("buyer","name").sort({createdAt:-1});
+    res.status(200).json({
         success:true,
         message: 'Order placed',
         orders
@@ -245,8 +237,6 @@ export const getAllOrdersControllers=async(req,res)=>{
      })
   }
 }
-
-
 
 
 //orders
