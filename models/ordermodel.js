@@ -2,13 +2,13 @@ import mongoose from "mongoose";
 const orderSchema=new mongoose.Schema({
  products:[
   {
-    type: mongoose.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
      ref:'products',   //made connection with products
 }
 ],
 payment:{},
 buyer:{
-type: mongoose.ObjectId,
+type: mongoose.Schema.Types.ObjectId,
 ref:'users'
 },
 status:{
