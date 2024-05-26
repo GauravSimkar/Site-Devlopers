@@ -68,7 +68,7 @@ export const getProductController=async(req,res)=>{
      res.status(200).send({
         success:true,
         countTotal:products.length,
-        message:'ALIProducts',
+        message:'ALLProducts',
         products,
       })
     
@@ -366,58 +366,71 @@ export const productFiltersController=async(req,res)=>{
     }
 //token from braintree
 //callback function
-export const braintreetokenController=async(req,res)=>{
-    try{
-        gateway.clientToken.generate({},function(err,response){
-            if(err){
-                res.status(500).send(err);
-            }
-            else{
-                res.send(response);
-            }
-        });
-
-    }
-    catch(error){
-      console.log(error);
-    }
-
-}
-//payment gateway api
-export const braintreepaymentController=async(req,res)=>{
-    try {
- const {cart,nonce}=req.body;   //braintree ka khud ka api hai
- 
- let total=0;
- cart.map((i)=>{  //rupee calculated
- total+=i.price;
-});
-let newTransaction =gateway.transaction.sale({
-    amount:total,
-    PaymentMethodNonce:nonce,
-    options:{
-        submitForSettlement:true,
-    }
-},
-function(error,result){
-    if(result){
-        const order= new ordermodel({
-   products:cart,
-   payment:result,
-   buyer: req.user._id
-}).save()
-res.json({ok:true}) 
-}
-else{
-    res.status(500).send(error)
-}
-}
-)
+export const braintreeTokenController = async (req, res) => {
+  try {
+    console.log("I amm sdfsdhf");
+    gateway.clientToken.generate({}, function (err, response) {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        res.send(response);
+      }
+    });
   } catch (error) {
-    console.log(error); 
-    }
+    console.log(error);
+  }
+};
+//payment gateway api
+export const brainTreePaymentController = async (req, res) => {
+  try {
+    console.log("I am here");
+    console.log("The reqw is", req.body);
+    const { nonce, renderCart } = req.body;
+    let total = 0;
+    renderCart.map((i) => {
+      total += i.price;
+    });
+    // console.log(total);
+    // console.log("The req renderCart is", renderCart);
+    // console.log("The req nonce is", nonce);
+    // console.log("I am here");
+    // console.log("The userid is", req.user._id);
 
-}
+    let newTransaction = gateway.transaction.sale(
+      {
+        amount: total,
+        paymentMethodNonce: nonce,
+        options: {
+          submitForSettlement: true,
+        },
+      },
+      async function (error, result) {
+        if (result) {
+          // Extract ObjectIds from renderCart
+          // console.log(renderCart);
+          const productIds = renderCart.map(item => item.photo_id);
+          // const p= JSON.parse(productIds);
+          
+          const order = new ordermodel({
+            products: productIds,
+            payment: result,
+            buyer: req.user._id,
+          });
+          // console.log("The order is", order);
+          await order.save();
+          res.json({ ok: true });
+        } else {
+          res.status(500).send(error);
+        }
+      }
+    );
+    console.log("I am here");
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).send(error.message);
+  }
+};
     //order status
     export  const orderStatusController =async (req,res)=>{
         try{

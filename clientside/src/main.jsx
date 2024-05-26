@@ -38,8 +38,11 @@ import Products from './pages/Admin/Products.jsx'
 import UpdateProduct from './pages/Admin/UpdateProduct.jsx'
 // import 'antd/dist/reset.css'
 import ShopNow from './pages/Shopnow.jsx';
+
 import { SearchProvider } from './components/contextAPI/search.jsx';
-import Search from './pages/Search.jsx';
+// import Search from './pages/Search.jsx';
+import AdminOrders from './pages/Admin/AdminOrders.jsx';
+import Search from './pages/search.jsx';
 
 
 const router=createBrowserRouter([
@@ -60,7 +63,7 @@ const router=createBrowserRouter([
     {path:"/dashboard/admin/create-category" , element:<CreateCategory/>},
     {path:"/dashboard/admin/products", element:<Products/>},
     {path:"/dashboard/admin/product/:slug", element:<UpdateProduct/>},
-
+    {path:"/dashboard/admin/orders" , element:<AdminOrders/>},
     {path:"/dashboard/admin/users" , element:<Users/>},
     ]},
     {path:"/shop-now" , element:<ShopNow/>},

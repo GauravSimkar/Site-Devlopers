@@ -1,36 +1,50 @@
-
 import { useContext, useEffect, useState } from "react";
+import AdminMenu from "../../components/layout/Adminmenu";
 import Layout from "../../components/layout/layout";
-import Usermenu from "../../components/layout/Usermenu";
-import axios from "axios";
 import { Authcontext } from "../../components/contextAPI/Authcontext";
+import axios from "axios";
 import moment from 'moment'
-const Order=()=>{
-  const [orders,setOrders]=useState([]);
-  const [auth]=useContext(Authcontext);
 
-  const getOrders=async ()=>{
-    try{
-    const {data}=await axios.get(`${import.meta.env.REACT_APP_API}/api/v1/auth/orders`);
-    setOrders(data.orders);
-    console.log(data);
+const AdminOrders=()=>{
+    // const [status,setStatus]=useState(["Not Process","Processing","Shipped","deliverd","cancel"]);
+    // const [changeStatus,setChangeStatus]=useState("");
+    const [orders,setOrders]=useState([]);
+    const [auth]=useContext(Authcontext);
+  
+    const getAllOrders=async ()=>{
+      try{
+      const {data}=await axios.get(`${import.meta.env.REACT_APP_API}/api/v1/auth/all-orders`);
+      setOrders(data.orders);
+      console.log(data);
+      }
+      catch (error){
+        console.log(error);
+      }
     }
-    catch (error){
-      console.log(error);
-    }
-  }
-  useEffect(()=>{
-    if(auth?.token)
-    getOrders();
-  },[auth?.token]);
+    useEffect(()=>{
+      if(auth?.token)
+      getAllOrders();
+    },[auth?.token]);
+
+    const handleChange = async (orderId, value) => {
+        console.log(value,orderId);
+        try {
+          const { data } = await axios.put(`${import.meta.env.REACT_APP_API}/api/v1/product/order-status/${orderId}`, {
+            status: value,
+          });
+          getAllOrders();
+        } catch (error) {
+          console.log(error);
+        }
+      };
     return(
-      <Layout>
+        <Layout>
         <div className="row">
           <div className="col-md-3">
-             <Usermenu/>
+             <AdminMenu/>
           </div>
           <div className="col-md-9">
-            <h1 className="text-center">Your Orders</h1>
+            <h1 className="text-center">All Orders</h1>
               {orders.length > 0 ? (
             <div className="border shadow">
               {orders?.map((o, i) => (
@@ -49,7 +63,16 @@ const Order=()=>{
                     <tbody>
                       <tr>
                         <td scope="row">{i + 1}</td>
-                        <td>{o?.status}</td>
+                        <td>
+                        <select className="form-select" defaultValue={o.status} style={{border:"none",outline:"none"}} onChange={(e)=>handleChange(o._id,e.target.value)}>
+                            <option value="" disabled>Select options</option>
+                            <option value="Not Process">Not Process</option>
+                            <option value="Processing">Processing</option>
+                            <option value="Shipped">Shipped</option>
+                            <option value="Delivered">Deliverd</option>
+                            <option value="Cancel">Cancel</option>
+                        </select>
+                        </td>
                         <td>{o?.buyer?.name}</td>
                         <td>{moment(o?.createAt).format("DD-MM-YYYY")}</td>
                         <td>{o?.payment?.success ? "Success" : "Failed"}</td>
@@ -91,10 +114,9 @@ const Order=()=>{
             <p>No orders Found!</p>
           )}
           </div>
-        </div>
-        
+        </div> 
     </Layout>
     );
 }
 
-export default Order;
+export default AdminOrders;

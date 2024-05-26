@@ -17,7 +17,7 @@ const CartContextProvider = ({ children }) => {
     updateCartState(cartData);
   }, []);
 
-  const updateCartState = (cartData, savedQuantity, savedTotalCost) => {
+  const updateCartState = (cartData) => {
     setCart(cartData);
   };
 
@@ -47,20 +47,22 @@ const CartContextProvider = ({ children }) => {
 
   const removeFromCart=(id)=>{
     let updatedCart=[];
-    let  updatedTotalCost;
     cart.forEach((o)=>{
      if(o.id!==id)
      updatedCart.push(o);
     });
+    setCart(updatedCart);
     setsaveCart(true);
   }
 
   const renderCart=cart.filter((cartitem)=>auth?.user&&auth?.user?.id===cartitem.user_id);
   return (
     <Cartcontext.Provider value={{
+      cart,
+      setCart,
       renderCart,
       addToCart,
-      removeFromCart
+      removeFromCart,
     }}>
       {children}
     </Cartcontext.Provider>

@@ -21,9 +21,9 @@ router.get('/admin-auth',requireSignin,isadmin,(req,res)=>{
 //user profile update
 router.put('/profile',requireSignin,updateProfileController);
 
-router.get('/user-order',requireSignin,getOrdersControllers);
+router.get('/orders',requireSignin,getOrdersControllers);
 // order recieve by admin
-router.get('/all-order',requireSignin,isadmin,getAllOrdersControllers);
+router.get('/all-orders',requireSignin,isadmin,getAllOrdersControllers);
 
 
 
