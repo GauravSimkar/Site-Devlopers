@@ -270,7 +270,7 @@ export const productFiltersController=async(req,res)=>{
         
         try{
           //logic to productlist  
-          const perPage=6;
+          const perPage=100;
           const page=req.params.page?req.params.page:1
           const products=await productModel.find(({})).select('-photo').skip((page-1)*perPage).limit(perPage).sort({createdAt:-1});
           res.status(200).send({
@@ -346,8 +346,8 @@ export const productFiltersController=async(req,res)=>{
     export const  productcategoryController=async(req,res)=>{
         try{
       const category=await categoryModel.findOne({slug:req.params.slug}); 
-      console.log(categoryproduct);
-      const products=await productModel.find({ category }).populate('category');
+
+      const products=await productModel.find({ category}).populate('category');
       res.status(200).send({
          success:true,
          category,

@@ -42,7 +42,7 @@ import ShopNow from './pages/Shopnow.jsx';
 import { SearchProvider } from './components/contextAPI/search.jsx';
 // import Search from './pages/Search.jsx';
 import AdminOrders from './pages/Admin/AdminOrders.jsx';
-import Search from './pages/search.jsx';
+import Search from './pages/Searchbox.jsx';
 
 
 const router=createBrowserRouter([

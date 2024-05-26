@@ -3,11 +3,12 @@ import React, { useState } from 'react'
 import {ToastContainer, toast} from 'react-toastify'
 // import axios from 'axios';  //for network request
 import './forgetpassword.css';
+import { useNavigate } from 'react-router-dom';
 import Layout from '../../components/layout/layout';
 import axios from 'axios'; 
 
  function Forgetpassword () {
-
+  const navigate=useNavigate();
   const [email ,setemail]=useState("");
 
   const [newpassword ,setnewPassword]=useState("");
@@ -31,6 +32,7 @@ import axios from 'axios';
   if(res.data.success){
     toast.success(res.data.message);
     //navigation to login page tauqeer work
+    navigate('/login');
   }
   else{
     toast.error(res.data.message);
@@ -40,7 +42,7 @@ import axios from 'axios';
    catch(error){ 
   //   console.log(error.response.data)
   console.log(error);
-    toast.error("something Went Wrong");
+    toast.error("Incorrect Answer or email");
    }
     
     };

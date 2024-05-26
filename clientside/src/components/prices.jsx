@@ -1,32 +1,35 @@
+import { FaRupeeSign } from "react-icons/fa";
+
+
 export const Prices = [
   {
     _id: 0,
-    name: "$0 to 19",
-    array: [0, 19],
+    name:"Rs 0 to 500",
+    array: [0, 500],
   },
   {
     _id: 1,
-    name: "$20 to 39",
-    array: [20, 39],
+    name: "Rs 501 to 1000",
+    array: [501, 1000],
   },
   {
     _id: 2,
-    name: "$40 to 59",
-    array: [40, 59],
+    name: "Rs 1001 to 2000",
+    array: [1001, 2000],
   },
   {
     _id: 3,
-    name: "$60 to 79",
-    array: [60, 79],
+    name: "Rs 2001 to 5000",
+    array: [2001, 5000],
   },
   {
     _id: 4,
-    name: "$80 to 99",
-    array: [80, 99],
+    name: "Rs 5001 to 50000",
+    array: [3001, 50000],
   },
   {
     _id: 4,
-    name: "$100 or more",
-    array: [100, 9999],
+    name: "Rs 50001 or more",
+    array: [50001, 10000000],
   },
 ];
