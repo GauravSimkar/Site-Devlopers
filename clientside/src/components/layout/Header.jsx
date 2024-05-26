@@ -7,7 +7,7 @@ import { Cartcontext } from '../contextAPI/Cartcontext';
 import Searchinput from '../Form/searchinput';
 function Header () {
   let [auth,setauth]=useContext(Authcontext);
-  const {quantity}=useContext(Cartcontext);
+  const {renderCart}=useContext(Cartcontext);
   const categories=useCategory()
   let handlelogout=()=>{
     setauth({
@@ -63,12 +63,13 @@ function Header () {
                         <li><Link onClick={handlelogout} className="dropdown-item" to="/">LogOut</Link></li>
                       </ul>
                     </li>
+                     {auth?.user?.role!==1&&<li className="nav-item">
+                     <Link  className="nav-link pg-link" to="/Cartpage">Cart({renderCart.length})</Link>
+                  </li>}
                    </>
 
           }
-          {auth?.user?.role!==1&&<li className="nav-item">
-                 <Link  className="nav-link pg-link" to="/Cartpage">Cart({quantity})</Link>
-             </li>}
+          
              
     </ul>
   </div>

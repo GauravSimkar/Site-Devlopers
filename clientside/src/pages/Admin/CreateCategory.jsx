@@ -164,7 +164,7 @@ import  {toast} from 'react-toastify'
 import axios from "axios";
 import CategoryForm from "../../components/Form/CategoryForm";
 // import { Modal } from "antd";
-import {Modal,ModalHeader} from "reactstrap";
+//import {Modal,ModalHeader} from "reactstrap";
 const CreateCategory = () => {
  
   const [categories, setCategories] = useState([]);

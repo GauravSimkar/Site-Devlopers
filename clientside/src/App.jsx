@@ -3,19 +3,20 @@ import './App.css'
 import { Outlet} from 'react-router-dom'
 import AuthcontextProvider from './components/contextAPI/Authcontext.jsx'
 import CartContextProvider from './components/contextAPI/Cartcontext.jsx';
-import { SearchcontextProvider } from './components/contextAPI/search.jsx';
+import { SearchProvider } from './components/contextAPI/search.jsx';
 
 
 function App() {
 
   return (
-    <AuthcontextProvider> 
     
-      <CartContextProvider>
+    <AuthcontextProvider> 
+   
+    <CartContextProvider>
          <Outlet/>
       </CartContextProvider>
-    
-    </AuthcontextProvider>
+ 
+     </AuthcontextProvider>
   );
 }
 

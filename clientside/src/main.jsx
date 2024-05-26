@@ -38,13 +38,15 @@ import Products from './pages/Admin/Products.jsx'
 import UpdateProduct from './pages/Admin/UpdateProduct.jsx'
 // import 'antd/dist/reset.css'
 import ShopNow from './pages/Shopnow.jsx';
-import { SearchcontextProvider } from './components/contextAPI/search.jsx';
+import { SearchProvider } from './components/contextAPI/search.jsx';
+import Search from './pages/Search.jsx';
 
 
 const router=createBrowserRouter([
   { path:'/', element:<App/>,
     children:[
     {path:'/' , element:<Home/>,},
+    {path:"/search" ,element:<Search/>} , //search component is added in this path
     {path:'/dashboard',element:<PrivateRouter/>,children:[
     {path:"/dashboard/user" , element:<Dashboard/>},
     {path:"/dashboard/user/profile" , element:<Profile/>},
@@ -88,12 +90,14 @@ const bcolor=document.getElementById('root');
 bcolor.style.background= '#FAF7F0 '; 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <SearchcontextProvider>
+    <SearchProvider>
+
+    
 
     
      <RouterProvider router={router}/>
         <App />
     <ToastContainer/> 
-    </SearchcontextProvider>
+    </SearchProvider>
   </React.StrictMode>,
 )

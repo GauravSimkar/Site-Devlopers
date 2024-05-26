@@ -2,27 +2,33 @@
  import { useSearch } from '../contextAPI/search'
 // import { set } from 'mongoose';
 import axios from 'axios';
-// import { useNavigate } from 'react-router-dom';
- export const Searchinput = () => {
+import { useNavigate } from 'react-router-dom';
+const Searchinput = () => {
   
      const [values,setvalues]=useSearch();
-    // const navigate=useNavigate();
-   const handleonsubmit=async (e)=>{
+     const navigate=useNavigate();
 
-     e.preventdefault()
+
+
+     const handleonsubmit=async (e)=>{
+      e.preventDefault();
+      console.log('i am here')
+  // e.preventdefault();
+    console.log(e);
+   
      try{
      const {data}= await axios.get(`${import.meta.env.REACT_APP_API}/api/v1/product/search/${values.keyword}`);
      console.log(data);
      setvalues({...values,results:data});
-    //  navigate('/search');
-    console.log(e);
+    navigate('/search');
+    
      }
      
      catch(error){
         console.log(error);
      }
 
-   }
+   };
 
      return(
       <div>
@@ -31,7 +37,7 @@ import axios from 'axios';
   <button className="btn btn-outline-success" type="submit">Search</button>
     </form>
  </div>
-   )
+   );
    
  };
  export default Searchinput;

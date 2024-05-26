@@ -294,7 +294,7 @@ export const productFiltersController=async(req,res)=>{
     export const searchProductController=async(req,res)=>{
         try{
             //logic
-            const {keyword}=req.params.keyword   
+            const {keyword}=req.params;  
             const results=await productModel.find({
                 $or:[
                     {name:{$regex: keyword, $options:"i"}},/*<field>: This should be replaced with the name of the field in your MongoDB collection that you want to perform the regex query on.
@@ -304,7 +304,8 @@ export const productFiltersController=async(req,res)=>{
                     {description:{$regex:keyword,$options:"i"}},
 
                 ],
-            }).select("-photo");
+            })
+            .select("-photo");
             console.log(results);
             res.json(results);
 
