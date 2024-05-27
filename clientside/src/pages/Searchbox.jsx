@@ -7,7 +7,7 @@ import { FaRupeeSign } from "react-icons/fa";
   const [values,setValues]=useSearch();
   return (
     <Layout title={'Search Results'}>
-   <div className='container'>
+   <div className='container' >
     <div className="text-center">
       <h2>Search Results</h2>
       <h6>{values?.results.length<1?'No Products Found': `Found: ${values?.results.length}`}</h6>

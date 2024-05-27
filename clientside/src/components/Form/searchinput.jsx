@@ -34,7 +34,7 @@ const Searchinput = () => {
      return(
       <div>
   <form class="search-form" role="search" onSubmit={handleonsubmit}>
-  <input className="form-control me-2" type="search"  style={{['width']:'370px'}} placeholder="Search" aria-label="Search" value={values.keyword} onChange={(e)=>setvalues({...values, keyword:e.target.value})} />
+  <input className="form-control search-container me-2" type="search"  placeholder="Search" aria-label="Search" value={values.keyword} onChange={(e)=>setvalues({...values, keyword:e.target.value})} />
   <button className="btn btn-outline-success" type="submit">Search</button>
     </form>
  </div>

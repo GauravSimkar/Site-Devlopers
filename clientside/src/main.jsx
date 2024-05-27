@@ -91,13 +91,11 @@ const router=createBrowserRouter([
 
 const bcolor=document.getElementById('root');
 bcolor.style.background= '#FAF7F0 '; 
+bcolor.style.minWidth="100% !important";
+bcolor.style.marginRight="0px !important"
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <SearchProvider>
-
-    
-
-    
      <RouterProvider router={router}/>
         <App />
     <ToastContainer/> 
