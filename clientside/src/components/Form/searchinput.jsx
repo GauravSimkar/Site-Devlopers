@@ -3,6 +3,7 @@
 // import { set } from 'mongoose';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import './searchinput.css'
 const Searchinput = () => {
   
      const [values,setvalues]=useSearch();
@@ -32,7 +33,7 @@ const Searchinput = () => {
 
      return(
       <div>
-  <form class="d-flex" style={{['margin-right']:'150px'}} role="search" onSubmit={handleonsubmit}>
+  <form class="search-form" role="search" onSubmit={handleonsubmit}>
   <input className="form-control me-2" type="search"  style={{['width']:'370px'}} placeholder="Search" aria-label="Search" value={values.keyword} onChange={(e)=>setvalues({...values, keyword:e.target.value})} />
   <button className="btn btn-outline-success" type="submit">Search</button>
     </form>
